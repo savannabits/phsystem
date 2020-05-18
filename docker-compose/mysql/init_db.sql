@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.30, for Linux (x86_64)
 --
--- Host: localhost    Database: mystrath
+-- Host: localhost    Database: ph
 -- ------------------------------------------------------
 -- Server version	5.7.30
 
@@ -164,6 +164,41 @@ LOCK TABLES `audits` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `children`
+--
+
+DROP TABLE IF EXISTS `children`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `children` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `middle_names` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bio` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dob` date NOT NULL,
+  `school` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hobbies` text COLLATE utf8mb4_unicode_ci,
+  `location` text COLLATE utf8mb4_unicode_ci,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `enrollment_date` datetime NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `children`
+--
+
+LOCK TABLES `children` WRITE;
+/*!40000 ALTER TABLE `children` DISABLE KEYS */;
+/*!40000 ALTER TABLE `children` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -269,7 +304,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +313,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2017_08_24_000000_create_activations_table',1),(3,'2017_08_24_000000_create_admin_activations_table',1),(4,'2017_08_24_000000_create_admin_password_resets_table',1),(5,'2017_08_24_000000_create_admin_users_table',1),(6,'2018_07_18_000000_create_wysiwyg_media_table',1),(7,'2019_08_19_000000_create_failed_jobs_table',1),(8,'2019_12_14_000001_create_personal_access_tokens_table',1),(9,'2020_05_12_120554_create_media_table',1),(10,'2020_05_12_120554_create_permission_tables',1),(11,'2020_05_12_120559_fill_default_admin_user_and_permissions',1),(12,'2020_05_12_120554_create_translations_table',2),(13,'2020_05_12_123123_create_audits_table',3),(14,'2020_05_12_123224_add_ldap_columns_to_users_table',3),(15,'2014_10_12_100000_create_password_resets_table',4),(16,'2020_05_12_125617_create_sessions_table',4),(17,'2020_05_12_125623_create_jobs_table',4),(18,'2020_05_13_124703_fill_user_permissions',5),(19,'2020_05_13_132435_fill_web_permissions_for_role',6),(20,'2020_05_13_132804_initiate_web_admin',7),(21,'2020_05_13_132911_grant_all_perms_to_web_admin',8),(22,'2020_05_13_133809_give_admin_on_first_web_user',9),(23,'2020_05_13_174016_fill_web_permissions_for_permission',10),(24,'2020_05_14_105602_add_group_to_permissions_table',11),(25,'2020_05_14_105832_populate_group_in_permissions',11),(26,'2020_05_14_113833_create_service_endpoints_table',12),(27,'2020_05_14_114058_fill_web_permissions_for_service-endpoint',13);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2017_08_24_000000_create_activations_table',1),(3,'2017_08_24_000000_create_admin_activations_table',1),(4,'2017_08_24_000000_create_admin_password_resets_table',1),(5,'2017_08_24_000000_create_admin_users_table',1),(6,'2018_07_18_000000_create_wysiwyg_media_table',1),(7,'2019_08_19_000000_create_failed_jobs_table',1),(8,'2019_12_14_000001_create_personal_access_tokens_table',1),(9,'2020_05_12_120554_create_media_table',1),(10,'2020_05_12_120554_create_permission_tables',1),(11,'2020_05_12_120559_fill_default_admin_user_and_permissions',1),(12,'2020_05_12_120554_create_translations_table',2),(13,'2020_05_12_123123_create_audits_table',3),(14,'2020_05_12_123224_add_ldap_columns_to_users_table',3),(15,'2014_10_12_100000_create_password_resets_table',4),(16,'2020_05_12_125617_create_sessions_table',4),(17,'2020_05_12_125623_create_jobs_table',4),(18,'2020_05_13_124703_fill_user_permissions',5),(19,'2020_05_13_132435_fill_web_permissions_for_role',6),(20,'2020_05_13_132804_initiate_web_admin',7),(21,'2020_05_13_132911_grant_all_perms_to_web_admin',8),(22,'2020_05_13_133809_give_admin_on_first_web_user',9),(23,'2020_05_13_174016_fill_web_permissions_for_permission',10),(24,'2020_05_14_105602_add_group_to_permissions_table',11),(25,'2020_05_14_105832_populate_group_in_permissions',11),(26,'2020_05_14_113833_create_service_endpoints_table',12),(27,'2020_05_14_114058_fill_web_permissions_for_service-endpoint',13),(28,'2020_05_17_174747_create_ph_class_table',14),(30,'2020_05_17_174747_create_ph_classes_table',15),(31,'2020_05_17_220921_fill_web_permissions_for_ph-class',15),(32,'2020_05_17_222348_create_children_table',16),(33,'2020_05_17_222922_fill_web_permissions_for_child',17);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,7 +409,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -383,7 +418,7 @@ CREATE TABLE `permissions` (
 
 LOCK TABLES `permissions` WRITE;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-INSERT INTO `permissions` VALUES (1,'admin','admin','2020-05-12 12:06:37','2020-05-14 08:36:58','admin'),(2,'admin.translation.index','admin','2020-05-12 12:06:37','2020-05-14 08:36:59','translation'),(3,'admin.translation.edit','admin','2020-05-12 12:06:37','2020-05-14 08:37:00','translation'),(4,'admin.translation.rescan','admin','2020-05-12 12:06:37','2020-05-14 08:37:00','translation'),(5,'admin.admin-user.index','admin','2020-05-12 12:06:37','2020-05-14 08:37:01','admin-user'),(6,'admin.admin-user.create','admin','2020-05-12 12:06:37','2020-05-14 08:37:02','admin-user'),(7,'admin.admin-user.edit','admin','2020-05-12 12:06:37','2020-05-14 08:37:03','admin-user'),(8,'admin.admin-user.delete','admin','2020-05-12 12:06:37','2020-05-14 08:37:03','admin-user'),(9,'admin.upload','admin','2020-05-12 12:06:37','2020-05-14 08:37:04','admin'),(10,'admin.admin-user.impersonal-login','admin','2020-05-12 12:06:37','2020-05-14 08:37:05','admin-user'),(11,'user','web','2020-05-13 12:49:36','2020-05-14 08:37:05','user'),(12,'user.index','web','2020-05-13 12:49:36','2020-05-14 08:37:06','user'),(13,'user.create','web','2020-05-13 12:49:36','2020-05-14 08:37:07','user'),(14,'user.show','web','2020-05-13 12:49:36','2020-05-14 08:37:07','user'),(15,'user.edit','web','2020-05-13 12:49:36','2020-05-14 08:37:08','user'),(16,'user.delete','web','2020-05-13 12:49:36','2020-05-14 08:37:09','user'),(17,'user.bulk-delete','web','2020-05-13 12:49:36','2020-05-14 08:37:09','user'),(18,'admin.user','admin','2020-05-13 12:49:37','2020-05-14 08:37:10','admin'),(19,'admin.user.index','admin','2020-05-13 12:49:37','2020-05-14 08:37:11','user'),(20,'admin.user.create','admin','2020-05-13 12:49:37','2020-05-14 08:37:11','user'),(21,'admin.user.show','admin','2020-05-13 12:49:37','2020-05-14 08:37:12','user'),(22,'admin.user.edit','admin','2020-05-13 12:49:37','2020-05-14 08:37:13','user'),(23,'admin.user.delete','admin','2020-05-13 12:49:37','2020-05-14 08:37:14','user'),(24,'admin.user.bulk-delete','admin','2020-05-13 12:49:37','2020-05-14 08:37:14','user'),(25,'role','web','2020-05-13 13:24:37','2020-05-14 08:37:15','role'),(26,'role.index','web','2020-05-13 13:24:37','2020-05-14 08:37:16','role'),(27,'role.create','web','2020-05-13 13:24:37','2020-05-14 08:37:17','role'),(28,'role.show','web','2020-05-13 13:24:37','2020-05-14 08:37:17','role'),(29,'role.edit','web','2020-05-13 13:24:37','2020-05-14 08:37:18','role'),(30,'role.delete','web','2020-05-13 13:24:37','2020-05-14 08:37:19','role'),(31,'role.bulk-delete','web','2020-05-13 13:24:37','2020-05-14 08:37:20','role'),(32,'permission','web','2020-05-13 17:40:17','2020-05-14 08:37:20','permission'),(33,'permission.index','web','2020-05-13 17:40:17','2020-05-14 08:37:21','permission'),(34,'permission.create','web','2020-05-13 17:40:17','2020-05-14 08:37:22','permission'),(35,'permission.show','web','2020-05-13 17:40:17','2020-05-14 08:37:23','permission'),(36,'permission.edit','web','2020-05-13 17:40:17','2020-05-14 08:37:23','permission'),(37,'permission.delete','web','2020-05-13 17:40:17','2020-05-14 08:37:24','permission'),(38,'permission.bulk-delete','web','2020-05-13 17:40:17','2020-05-14 08:37:25','permission'),(39,'service-endpoint','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(40,'service-endpoint.index','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(41,'service-endpoint.create','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(42,'service-endpoint.show','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(43,'service-endpoint.edit','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(44,'service-endpoint.delete','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(45,'service-endpoint.bulk-delete','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint');
+INSERT INTO `permissions` VALUES (1,'admin','admin','2020-05-12 12:06:37','2020-05-14 08:36:58','admin'),(2,'admin.translation.index','admin','2020-05-12 12:06:37','2020-05-14 08:36:59','translation'),(3,'admin.translation.edit','admin','2020-05-12 12:06:37','2020-05-14 08:37:00','translation'),(4,'admin.translation.rescan','admin','2020-05-12 12:06:37','2020-05-14 08:37:00','translation'),(5,'admin.admin-user.index','admin','2020-05-12 12:06:37','2020-05-14 08:37:01','admin-user'),(6,'admin.admin-user.create','admin','2020-05-12 12:06:37','2020-05-14 08:37:02','admin-user'),(7,'admin.admin-user.edit','admin','2020-05-12 12:06:37','2020-05-14 08:37:03','admin-user'),(8,'admin.admin-user.delete','admin','2020-05-12 12:06:37','2020-05-14 08:37:03','admin-user'),(9,'admin.upload','admin','2020-05-12 12:06:37','2020-05-14 08:37:04','admin'),(10,'admin.admin-user.impersonal-login','admin','2020-05-12 12:06:37','2020-05-14 08:37:05','admin-user'),(11,'user','web','2020-05-13 12:49:36','2020-05-14 08:37:05','user'),(12,'user.index','web','2020-05-13 12:49:36','2020-05-14 08:37:06','user'),(13,'user.create','web','2020-05-13 12:49:36','2020-05-14 08:37:07','user'),(14,'user.show','web','2020-05-13 12:49:36','2020-05-14 08:37:07','user'),(15,'user.edit','web','2020-05-13 12:49:36','2020-05-14 08:37:08','user'),(16,'user.delete','web','2020-05-13 12:49:36','2020-05-14 08:37:09','user'),(17,'user.bulk-delete','web','2020-05-13 12:49:36','2020-05-14 08:37:09','user'),(18,'admin.user','admin','2020-05-13 12:49:37','2020-05-14 08:37:10','admin'),(19,'admin.user.index','admin','2020-05-13 12:49:37','2020-05-14 08:37:11','user'),(20,'admin.user.create','admin','2020-05-13 12:49:37','2020-05-14 08:37:11','user'),(21,'admin.user.show','admin','2020-05-13 12:49:37','2020-05-14 08:37:12','user'),(22,'admin.user.edit','admin','2020-05-13 12:49:37','2020-05-14 08:37:13','user'),(23,'admin.user.delete','admin','2020-05-13 12:49:37','2020-05-14 08:37:14','user'),(24,'admin.user.bulk-delete','admin','2020-05-13 12:49:37','2020-05-14 08:37:14','user'),(25,'role','web','2020-05-13 13:24:37','2020-05-14 08:37:15','role'),(26,'role.index','web','2020-05-13 13:24:37','2020-05-14 08:37:16','role'),(27,'role.create','web','2020-05-13 13:24:37','2020-05-14 08:37:17','role'),(28,'role.show','web','2020-05-13 13:24:37','2020-05-14 08:37:17','role'),(29,'role.edit','web','2020-05-13 13:24:37','2020-05-14 08:37:18','role'),(30,'role.delete','web','2020-05-13 13:24:37','2020-05-14 08:37:19','role'),(31,'role.bulk-delete','web','2020-05-13 13:24:37','2020-05-14 08:37:20','role'),(32,'permission','web','2020-05-13 17:40:17','2020-05-14 08:37:20','permission'),(33,'permission.index','web','2020-05-13 17:40:17','2020-05-14 08:37:21','permission'),(34,'permission.create','web','2020-05-13 17:40:17','2020-05-14 08:37:22','permission'),(35,'permission.show','web','2020-05-13 17:40:17','2020-05-14 08:37:23','permission'),(36,'permission.edit','web','2020-05-13 17:40:17','2020-05-14 08:37:23','permission'),(37,'permission.delete','web','2020-05-13 17:40:17','2020-05-14 08:37:24','permission'),(38,'permission.bulk-delete','web','2020-05-13 17:40:17','2020-05-14 08:37:25','permission'),(39,'service-endpoint','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(40,'service-endpoint.index','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(41,'service-endpoint.create','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(42,'service-endpoint.show','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(43,'service-endpoint.edit','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(44,'service-endpoint.delete','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(45,'service-endpoint.bulk-delete','web','2020-05-14 11:40:59','2020-05-14 11:40:59','service-endpoint'),(53,'ph-class','web','2020-05-17 22:11:48','2020-05-17 22:11:48','ph-class'),(54,'ph-class.index','web','2020-05-17 22:11:48','2020-05-17 22:11:48','ph-class'),(55,'ph-class.create','web','2020-05-17 22:11:48','2020-05-17 22:11:48','ph-class'),(56,'ph-class.show','web','2020-05-17 22:11:48','2020-05-17 22:11:48','ph-class'),(57,'ph-class.edit','web','2020-05-17 22:11:48','2020-05-17 22:11:48','ph-class'),(58,'ph-class.delete','web','2020-05-17 22:11:48','2020-05-17 22:11:48','ph-class'),(59,'ph-class.bulk-delete','web','2020-05-17 22:11:48','2020-05-17 22:11:48','ph-class'),(60,'child','web','2020-05-17 22:29:22','2020-05-17 22:29:22','child'),(61,'child.index','web','2020-05-17 22:29:22','2020-05-17 22:29:22','child'),(62,'child.create','web','2020-05-17 22:29:22','2020-05-17 22:29:22','child'),(63,'child.show','web','2020-05-17 22:29:22','2020-05-17 22:29:22','child'),(64,'child.edit','web','2020-05-17 22:29:22','2020-05-17 22:29:22','child'),(65,'child.delete','web','2020-05-17 22:29:22','2020-05-17 22:29:22','child'),(66,'child.bulk-delete','web','2020-05-17 22:29:22','2020-05-17 22:29:22','child');
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -420,6 +455,67 @@ LOCK TABLES `personal_access_tokens` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ph_class`
+--
+
+DROP TABLE IF EXISTS `ph_class`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ph_class` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `minimum_age` int(10) unsigned NOT NULL,
+  `maximum_age` int(10) unsigned NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ph_class`
+--
+
+LOCK TABLES `ph_class` WRITE;
+/*!40000 ALTER TABLE `ph_class` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ph_class` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ph_classes`
+--
+
+DROP TABLE IF EXISTS `ph_classes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ph_classes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `minimum_age` int(10) unsigned NOT NULL,
+  `maximum_age` int(10) unsigned NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ph_classes_slug_unique` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ph_classes`
+--
+
+LOCK TABLES `ph_classes` WRITE;
+/*!40000 ALTER TABLE `ph_classes` DISABLE KEYS */;
+INSERT INTO `ph_classes` VALUES (1,'3-4','3-4 Years',3,4,'<p>A class for children aged 3-4<br></p>',1,'2020-05-17 22:13:04','2020-05-17 22:13:04'),(2,'5-6','5-6 Years',5,6,'<p>A class for children between the age of 5 and 6 years<br></p>',1,'2020-05-17 22:13:47','2020-05-17 22:13:47');
+/*!40000 ALTER TABLE `ph_classes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `role_has_permissions`
 --
 
@@ -442,7 +538,7 @@ CREATE TABLE `role_has_permissions` (
 
 LOCK TABLES `role_has_permissions` WRITE;
 /*!40000 ALTER TABLE `role_has_permissions` DISABLE KEYS */;
-INSERT INTO `role_has_permissions` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(18,1),(19,1),(20,1),(21,1),(22,1),(23,1),(24,1),(1,2),(2,2),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2),(10,2),(11,2),(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(18,2),(19,2),(20,2),(21,2),(22,2),(23,2),(24,2),(25,2),(26,2),(27,2),(28,2),(29,2),(30,2),(31,2),(32,2),(33,2),(34,2),(35,2),(36,2),(37,2),(38,2),(39,2),(40,2),(41,2),(42,2),(43,2),(44,2),(45,2);
+INSERT INTO `role_has_permissions` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(18,1),(19,1),(20,1),(21,1),(22,1),(23,1),(24,1),(1,2),(2,2),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2),(10,2),(11,2),(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(18,2),(19,2),(20,2),(21,2),(22,2),(23,2),(24,2),(25,2),(26,2),(27,2),(28,2),(29,2),(30,2),(31,2),(32,2),(33,2),(34,2),(35,2),(36,2),(37,2),(38,2),(39,2),(40,2),(41,2),(42,2),(43,2),(44,2),(45,2),(53,2),(54,2),(55,2),(56,2),(57,2),(58,2),(59,2),(60,2),(61,2),(62,2),(63,2),(64,2),(65,2),(66,2),(11,3),(12,3),(14,3),(53,3),(54,3),(56,3),(60,3),(61,3),(62,3),(63,3),(64,3),(65,3),(53,4),(54,4),(56,4),(60,4),(61,4),(63,4);
 /*!40000 ALTER TABLE `role_has_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -460,7 +556,7 @@ CREATE TABLE `roles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -469,7 +565,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrator','admin','2020-05-12 12:06:37','2020-05-12 12:06:37'),(2,'Administrator','web','2020-05-13 13:36:25','2020-05-13 13:36:25');
+INSERT INTO `roles` VALUES (1,'Administrator','admin','2020-05-12 12:06:37','2020-05-12 12:06:37'),(2,'Administrator','web','2020-05-13 13:36:25','2020-05-13 13:36:25'),(3,'Facilitator','web','2020-05-17 17:44:31','2020-05-17 17:44:31'),(4,'Parent','web','2020-05-17 17:45:22','2020-05-17 17:45:22');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,7 +623,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('AcrEqIxUGkii7kkKAL09iHv5f2xsN8cEs0YMH7D8',1,'172.18.0.1','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZ2hCbzFRdGZRNGFoeXF3Z1dDeTVtZHQzbm9sZDJVRjVxdkZTTDRNcCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM4OiJodHRwOi8vY3NtLnN0cmF0aG1vcmUuZWR1L3JvbGVzLzIvZWRpdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6ODoiY2FzX3VzZXIiO3M6NjoiU01hb3NhIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1589449598);
+INSERT INTO `sessions` VALUES ('DuQELlxR7uHH1fHogoCoipzJv10XzPGj75MxMUXA',NULL,'172.18.0.1','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWEZ2RkxUak1ZY29yWk5ybHdORkRVN25aU3pqQ0lXUUJwRll5Nzg4OCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9jc20uc3RyYXRobW9yZS5lZHUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19',1589779982);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -642,4 +738,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-14  9:48:23
+-- Dump completed on 2020-05-18  5:34:19
