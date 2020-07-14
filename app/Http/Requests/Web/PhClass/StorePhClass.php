@@ -26,13 +26,12 @@ class StorePhClass extends FormRequest
     public function rules(): array
     {
         return [
-            'slug' => ['required', Rule::unique('ph_classes', 'slug'), 'string'],
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string',Rule::unique('ph_classes', 'name')],
             'minimum_age' => ['required', 'integer'],
             'maximum_age' => ['required', 'integer'],
             'description' => ['required', 'string'],
             'enabled' => ['required', 'boolean'],
-            
+
         ];
     }
 

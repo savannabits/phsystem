@@ -74,4 +74,8 @@ class User extends Authenticatable
     }
 
     /* ************************ RELATIONS ************************ */
+
+    public function relatives() {
+        return $this->hasMany(Relative::class,"user_id");
+    }
 }

@@ -128,7 +128,6 @@ class ChildrenController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
-
         // Update changed values Child
         $child->update($sanitized);
 

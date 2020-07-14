@@ -8,10 +8,9 @@ window.Vue = Vue;
 window._ = _;
 window.axios = axios;
 window.moment = moment;
-window.apiPrefix = process.env.MIX_API_PREFIX ||"api";
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.baseURL = `${process.env.MIX_APP_URL}`;
+window.axios.defaults.baseURL = `${window.Laravel?.baseUrl}`;
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -26,14 +25,20 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+let baseUrl = document.head.querySelector('meta[name="app-base-url"]');
+let apiPrefix = document.head.querySelector('meta[name="api-prefix"]');
 
-// import Echo from 'laravel-echo';
+if (apiPrefix) {
+    window.apiPrefix = apiPrefix.content;
+    console.log(window.apiPrefix);
+} else {
+    console.error("API PREFIX NOT SET");
+}
 
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+if (baseUrl) {
+    window.baseUrl = baseUrl.content;
+    window.axios.defaults.baseURL = `${baseUrl.content}`;
+    console.log(window.axios.defaults.baseURL);
+} else {
+    console.error("BASE URL NOT SET");
+}

@@ -12,6 +12,25 @@ export default {
             }
             return null;
         },
+        getPostData: function getPostData() {
+            var _this3 = this;
+
+            if (this.mediaCollections) {
+                console.log(this.mediaCollections);
+                this.mediaCollections.forEach(function (collection, index, arr) {
+                    if (_this3.form[collection]) {
+                        console.warn("MediaUploader warning: Media input must have a unique name, '" + collection + "' is already defined in regular inputs.");
+                    }
+
+                    if (_this3.$refs[collection + '_uploader']) {
+                        _this3.form[collection] = _this3.$refs[collection + '_uploader'].getFiles();
+                    }
+                });
+            }
+            this.form['wysiwygMedia'] = this.wysiwygMedia;
+
+            return this.form;
+        },
         onSubmit() {
             let _this4 = this;
 

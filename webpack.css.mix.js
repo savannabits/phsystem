@@ -1,6 +1,4 @@
 const mix = require('laravel-mix');
-const tailwindcss = require('tailwindcss')
-require('laravel-mix-tailwind');
 require('laravel-mix-merge-manifest')
 
 /*
@@ -16,10 +14,6 @@ require('laravel-mix-merge-manifest')
 mix.setResourceRoot(`/${process.env.MIX_APP_URI || ''}/`);
 mix
     .sass('resources/sass/app.scss', 'public/css')
-    .options({
-        processCssUrls: false,
-        postCss: [ tailwindcss('./tailwind.config.js') ],
-    })
     .sass('resources/sass/admin/admin.scss', 'public/css')
     .sass('resources/sass/admin/styles/wizard.scss', 'public/css')
     .mergeManifest()

@@ -29,4 +29,11 @@ Route::group(['middleware' => "auth:sanctum,api", "namespace" =>"Api", "as" =>"a
         Route::post("{role}/permissions/toggle", "RoleController@togglePermission")->name("permissions.toggle");
         Route::post("{role}/permissions/toggle-all", "RoleController@toggleAllPermissions")->name("permissions.toggle-all");
     });
+    Route::group(["prefix" => "avatars", "as" => "avatars."],function() {
+        Route::post("{child}/upload","ChildController@uploadAvatar")->name('upload');
+    });
+
+    Route::apiResource("children", "ChildController");
+    Route::apiResource("users", "UserController");
+    Route::apiResource("relationship-types", "RelationshipTypeController");
 });

@@ -4,8 +4,8 @@ $strathmore-blue: #3A5DAE;
 $strathmore-gold: #CBA052;
 $strathmore-light-gold: #EED484;
 $red: $strathmore-red;
-$primary: $strathmore-blue;
-$info: $strathmore-gold;
+$primary: #2d3092;
+$info: #f05510;
 $danger: #FE3F61;
 $success: #60CF7D;
 $warning: #F5BE30;
@@ -17,8 +17,8 @@ $sidebar-bg: $primary;
 $sidebar-width: 270px !default;
 $navbar-brand-width: 270px !default;
 //$sidebar-bg: $strathmore-light-gold;
-$sidebar-nav-link-active-bg: $strathmore-gold;
-$sidebar-nav-link-active-icon-color: $strathmore-blue;
+$sidebar-nav-link-active-bg: $info;
+$sidebar-nav-link-active-icon-color: $primary;
 $pagination-hover-bg: #f3f8ff;
 
 // Available loaders

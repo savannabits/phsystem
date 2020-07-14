@@ -33,11 +33,11 @@ class UpdateChild extends FormRequest
             'gender' => ['sometimes', 'string'],
             'dob' => ['sometimes', 'date'],
             'school' => ['nullable', 'string'],
-            'hobbies' => ['nullable', 'string'],
+            'hobbies' => ['nullable', 'array'],
             'location' => ['nullable', 'string'],
             'active' => ['sometimes', 'boolean'],
             'enrollment_date' => ['sometimes', 'date'],
-            
+            'relatives'         => ["nullable", "array"],
         ];
     }
 

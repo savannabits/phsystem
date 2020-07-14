@@ -26,18 +26,18 @@ class StoreChild extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string'],
-            'middle_names' => ['nullable', 'string'],
-            'last_name' => ['required', 'string'],
-            'bio' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'dob' => ['required', 'date'],
-            'school' => ['nullable', 'string'],
-            'hobbies' => ['nullable', 'string'],
-            'location' => ['nullable', 'string'],
-            'active' => ['required', 'boolean'],
-            'enrollment_date' => ['required', 'date'],
-            
+            'first_name'        => ['required', 'string'],
+            'middle_names'      => ['nullable', 'string'],
+            'last_name'         => ['required', 'string'],
+            'bio'               => ['nullable', 'string'],
+            'gender'            => ['required', 'string'],
+            'dob'               => ['required', 'date'],
+            'school'            => ['nullable', 'string'],
+            'hobbies'           => ['nullable', 'array'],
+            'location'          => ['nullable', 'string'],
+            'active'            => ['required', 'boolean'],
+            'enrollment_date'   => ['required', 'date'],
+            'relatives'         => ["nullable", "array"],
         ];
     }
 

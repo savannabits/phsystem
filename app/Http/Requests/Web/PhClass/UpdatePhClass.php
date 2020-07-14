@@ -26,13 +26,11 @@ class UpdatePhClass extends FormRequest
     public function rules(): array
     {
         return [
-            'slug' => ['sometimes', Rule::unique('ph_classes', 'slug')->ignore($this->phClass->getKey(), $this->phClass->getKeyName()), 'string'],
-            'name' => ['sometimes', 'string'],
+            'name' => ['sometimes', Rule::unique('ph_classes', 'name')->ignore($this->phClass->getKey(), $this->phClass->getKeyName()), 'string'],
             'minimum_age' => ['sometimes', 'integer'],
             'maximum_age' => ['sometimes', 'integer'],
             'description' => ['sometimes', 'string'],
             'enabled' => ['sometimes', 'boolean'],
-            
         ];
     }
 

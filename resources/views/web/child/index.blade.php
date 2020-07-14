@@ -14,7 +14,8 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.child.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('children/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.child.actions.create') }}</a>
+{{--                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('children/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.child.actions.create') }}</a>--}}
+                        <b-button variant="primary" class="pull-right" @click="showChildCreateModal"><i class="icon-plus"></i> New Child</b-button>
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block table-responsive">
@@ -30,7 +31,7 @@
                                     </div>
                                     <div class="col-sm-auto form-group ">
                                         <select class="form-control" v-model="pagination.state.per_page">
-                                            
+
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="100">100</option>
@@ -88,13 +89,19 @@
                                         <td>@{{ item.gender }}</td>
                                         <td>@{{ item.dob | date }}</td>
                                         <td>@{{ item.school }}</td>
-                                        <td>@{{ item.active }}</td>
+                                        <td>
+                                            <label class="switch switch-3d switch-success">
+                                                <input type="checkbox" class="switch-input" v-model="collection[index].active" @change="toggleSwitch(item.resource_url, 'active', collection[index])">
+                                                <span class="switch-slider"></span>
+                                            </label>
+                                        </td>
                                         <td>@{{ item.enrollment_date | datetime }}</td>
-                                        
+
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-auto">
-                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('savannabits/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
+                                                    <b-button @click="showChildEditModal($event,item)" variant="primary" size="sm"><i class="icon-pencil"></i></b-button>
+{{--                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('savannabits/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>--}}
                                                 </div>
                                                 <form class="col" @submit.prevent="deleteItem(item.resource_url)">
                                                     <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('savannabits/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
@@ -118,10 +125,12 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('savannabits/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('savannabits/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('children/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.child.actions.create') }}</a>
+{{--                                <a class="btn btn-primary btn-spinner" href="{{ url('children/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.child.actions.create') }}</a>--}}
                             </div>
                         </div>
                     </div>
+                    @include('web.child.components.create-modal')
+                    @include('web.child.components.edit-modal')
                 </div>
             </div>
         </div>

@@ -117,3 +117,139 @@ $factory->define(App\Child::class, static function (Faker\Generator $faker) {
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\AttendanceStatus::class, static function (Faker\Generator $faker) {
+    return [
+        'code' => $faker->sentence,
+        'name' => $faker->firstName,
+        'description' => $faker->sentence,
+        'enabled' => $faker->boolean(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\ResourceType::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        'description' => $faker->text(),
+        'enabled' => $faker->boolean(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Enrollment::class, static function (Faker\Generator $faker) {
+    return [
+        'child_id' => $faker->sentence,
+        'ph_class_id' => $faker->sentence,
+        'enrollment_date' => $faker->date(),
+        'graduation_date' => $faker->date(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\RollCall::class, static function (Faker\Generator $faker) {
+    return [
+        'date' => $faker->date(),
+        'ph_class_id' => $faker->sentence,
+        'created_by' => $faker->sentence,
+        'description' => $faker->text(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Attendance::class, static function (Faker\Generator $faker) {
+    return [
+        'enrollment_id' => $faker->sentence,
+        'roll_call_id' => $faker->sentence,
+        'attendance_status_id' => $faker->sentence,
+        'comment' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\LessonResource::class, static function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'description' => $faker->sentence,
+        'published_at' => $faker->dateTime,
+        'enabled' => $faker->boolean(),
+        'uploaded_by' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\GeneralResource::class, static function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'description' => $faker->sentence,
+        'published_at' => $faker->dateTime,
+        'enabled' => $faker->boolean(),
+        'uploaded_by' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Lesson::class, static function (Faker\Generator $faker) {
+    return [
+        'ph_class_id' => $faker->sentence,
+        'facilitator_id' => $faker->sentence,
+        'lesson_date' => $faker->date(),
+        'start_time' => $faker->time(),
+        'end_time' => $faker->time(),
+        'objective' => $faker->sentence,
+        'activities' => $faker->text(),
+        'biblical_passage' => $faker->text(),
+        'homework' => $faker->text(),
+        'enabled' => $faker->boolean(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\RelationshipType::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        'description' => $faker->sentence,
+        'enabled' => $faker->boolean(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Relative::class, static function (Faker\Generator $faker) {
+    return [
+        'user_id' => $faker->sentence,
+        'child_id' => $faker->sentence,
+        'relationship_type_id' => $faker->sentence,
+        'custom_relationship' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

@@ -19,15 +19,6 @@
         <div v-if="errors.has('last_name')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('last_name') }}</div>
     </div>
 </div>
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('bio'), 'has-success': fields.bio && fields.bio.valid }">
-    <label for="bio" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.child.columns.bio') }}</label>
-        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <div>
-            <wysiwyg v-model="form.bio" v-validate="'required'" id="bio" name="bio" :config="mediaWysiwygConfig"></wysiwyg>
-        </div>
-        <div v-if="errors.has('bio')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('bio') }}</div>
-    </div>
-</div>
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('gender'), 'has-success': fields.gender && fields.gender.valid }">
     <label for="gender" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.child.columns.gender') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
@@ -40,7 +31,7 @@
     <div :class="isFormLocalized ? 'col-md-4' : 'col-sm-8'">
         <div class="input-group input-group--custom">
             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-            <datetime v-model="form.dob" :config="datePickerConfig" v-validate="'required|date_format:yyyy-MM-dd HH:mm:ss'" class="flatpickr" :class="{'form-control-danger': errors.has('dob'), 'form-control-success': fields.dob && fields.dob.valid}" id="dob" name="dob" placeholder="{{ trans('savannabits/admin-ui::admin.forms.select_a_date') }}"></datetime>
+            <datetime v-model="form.dob" :config="datePickerConfig" v-validate="'required'" class="flatpickr" :class="{'form-control-danger': errors.has('dob'), 'form-control-success': fields.dob && fields.dob.valid}" id="dob" name="dob" placeholder="{{ trans('savannabits/admin-ui::admin.forms.select_a_date') }}"></datetime>
         </div>
         <div v-if="errors.has('dob')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('dob') }}</div>
     </div>
@@ -55,9 +46,7 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('hobbies'), 'has-success': fields.hobbies && fields.hobbies.valid }">
     <label for="hobbies" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.child.columns.hobbies') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <div>
-            <wysiwyg v-model="form.hobbies" v-validate="''" id="hobbies" name="hobbies" :config="mediaWysiwygConfig"></wysiwyg>
-        </div>
+        <b-form-tags tag-variant="primary" tag-class="p-2" tag-pills v-model="form.hobbies" v-validate="''" input-id="hobbies" :input-attrs="{name: 'hobbies'}" @change="validate($event)" :class="{'form-control-danger': errors.has('hobbies'), 'form-control-success': fields.hobbies && fields.hobbies.valid}"></b-form-tags>
         <div v-if="errors.has('hobbies')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('hobbies') }}</div>
     </div>
 </div>
@@ -65,7 +54,7 @@
     <label for="location" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.child.columns.location') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
         <div>
-            <wysiwyg v-model="form.location" v-validate="''" id="location" name="location" :config="mediaWysiwygConfig"></wysiwyg>
+            <input type="text"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('location'), 'form-control-success': fields.location && fields.location.valid}" v-model="form.location"  id="location" name="location">
         </div>
         <div v-if="errors.has('location')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('location') }}</div>
     </div>
@@ -88,6 +77,16 @@
             <datetime v-model="form.enrollment_date" :config="datetimePickerConfig" v-validate="'required|date_format:yyyy-MM-dd HH:mm:ss'" class="flatpickr" :class="{'form-control-danger': errors.has('enrollment_date'), 'form-control-success': fields.enrollment_date && fields.enrollment_date.valid}" id="enrollment_date" name="enrollment_date" placeholder="{{ trans('savannabits/admin-ui::admin.forms.select_date_and_time') }}"></datetime>
         </div>
         <div v-if="errors.has('enrollment_date')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('enrollment_date') }}</div>
+    </div>
+</div>
+<hr>
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('bio'), 'has-success': fields.bio && fields.bio.valid }">
+    <label for="bio" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.child.columns.bio') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <div>
+            <wysiwyg v-model="form.bio" v-validate="'required'" id="bio" name="bio" :config="mediaWysiwygConfig"></wysiwyg>
+        </div>
+        <div v-if="errors.has('bio')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('bio') }}</div>
     </div>
 </div>
 

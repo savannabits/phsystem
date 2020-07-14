@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -52,8 +54,7 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
-        $this->fixIntendedUrl();
-//        $this->validateLogin($request);
+        $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -61,33 +62,21 @@ class LoginController extends Controller
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
+
             return $this->sendLockoutResponse($request);
         }
 
-        \Log::info("Calling cas->user");
-        /*$auth = cas()->checkAuthentication();
-        if (!$auth) cas()->authenticate();*/
-        $username = cas()->user();
-        \Log::info("User: $username is being logged in");
-        try {
-            $user = User::whereUsername($username)->firstOrFail();
-            \Log::info("Logging in $user->username");
-            \Auth::login($user);
-            \Log::info("sending login response");
+        if ($this->attemptLogin($request)) {
+            $this->fixIntendedUrl();
             return $this->sendLoginResponse($request);
-        } catch (\Throwable $exception) {
-            \Log::error($exception);
-            $this->incrementLoginAttempts($request);
-            cas()->logoutWithUrl(env('CAS_REDIRECT_PATH'));
-            return $this->sendFailedLoginResponse($request);
         }
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
 
         // If the login attempt was unsuccessful we will increment the number of attempts
         // to login and redirect the user back to the login form. Of course, when this
         // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
     }
     protected function sendLoginResponse(Request $request)
     {
@@ -97,27 +86,34 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         \Log::info("Login attempts cleared. redirecting..");
+        if ($request->ajax()) {
+            return jsonRes(true, "Login Successful",[],200,['redirect' => \Session::get('url.intended')]);
+        }
         return $this->authenticated($request, $this->guard()->user())
             ?: redirect()->intended($this->redirectPath());
     }
     public function username()
     {
-        return 'username';
+        return 'email';
     }
     public function showLoginForm(Request $request)
     {
-        return $this->login($request);
-    }
-    public function casCallback(Request $request) {
-        \Log::info("Cas is logged on. Going to login");
-        $this->login($request); //Jump to authentication
+        return view('auth.login');
     }
     public function logout(Request $request)
     {
-        $this->middleware(['cas.auth']);
         $this->guard()->logout();
+
         $request->session()->invalidate();
-        cas()->logoutWithUrl(env('CAS_LOGOUT_REDIRECT'));
-        return $this->loggedOut($request) ?: redirect('/');
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 204)
+            : redirect('/');
     }
 }

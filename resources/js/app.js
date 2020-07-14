@@ -3,28 +3,41 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import BootstrapVue from "bootstrap-vue/dist/bootstrap-vue.esm";
 
-require('./bootstrap');
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import './bootstrap';
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-import VueTailwind from 'vue-tailwind'
-Vue.use(VueTailwind);
-import "bootstrap-vue/dist/bootstrap-vue.css"
-Vue.use(BootstrapVue)
-Vue.component('example-component', () => import(
-    /* webpackChunkName: `example-component` */
-    "./components/ExampleComponent")
-);
-import "./frontend-components"
-const app = new Vue({
-    el: '#app',
+// import VueQuillEditor from 'vue-quill-editor';
+import Vue2Filters from "vue2-filters";
+import Notifications from 'vue-notification';
+import VeeValidate from 'vee-validate';
+import 'flatpickr/dist/flatpickr.css';
+import VueCookie from 'vue-cookie';
+import { Admin } from 'craftable';
+import BootstrapVue, {BootstrapVueIcons} from "bootstrap-vue";
+import Vue from 'vue';
+import Loading from "vue-loading-overlay"
+import 'vue-loading-overlay/dist/vue-loading.css';
+import './web/app-components/bootstrap';
+import './frontend-components';
+//
+// import 'craftable/dist/ui';
+
+Vue.component('multiselect', ()=>import(/*webpackChunkName: 'vue-multiselect'*/ "vue-multiselect"));
+Vue.component('typeahead', () => import(/*webpackChunkName: 'typeahead'*/ "vue-bootstrap-typeahead"));
+Vue.use(VeeValidate, {strict: true});
+Vue.component('datetime', () => import(/* webpackChunkName: 'flatpickr-datetime'*/ "vue-flatpickr-component")) ;
+
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+// Vue.use(VueQuillEditor);
+Vue.use(Notifications);
+Vue.use(VueCookie);
+Vue.use(Vue2Filters);
+Vue.use(Loading,{
+    // props
+    color: 'green',
+    loader: 'dots'
+});
+new Vue({
+    mixins: [Admin]
 });

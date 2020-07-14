@@ -1,4 +1,4 @@
-<header class="app-header navbar bg-primary pr-0">
+<header class="app-header navbar pr-0">
     <button class="navbar-toggler sidebar-toggler d-lg-none" type="button" data-toggle="sidebar-show">
         <span class="navbar-toggler-icon"></span>
     </button>

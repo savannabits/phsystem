@@ -83,27 +83,26 @@ export default {
         async ajaxSubmit(url, data,method = 'post') {
             let _this4 = this;
             this.form = {...data};
-            return this.$validator.validateAll().then(function (result) {
-                if (!result) {
-                    _this4.$notify({
-                        type: 'error',
-                        title: 'Validation',
-                        text: 'The form contains invalid fields.'
+            return new Promise(((resolve, reject) => {
+                this.$validator.validateAll()
+                    .then(function (result) {
+                    if (!result) {
+                        reject("The form contains  invalid fields");
+                        return false;
+                    }
+
+                    _this4.submiting = true;
+
+                    axios.request({
+                        method: method,
+                        url: url, data: _this4.getPostData()
+                    }).then(function (response) {
+                        resolve(_this4.onSuccess(response.data));
+                    }).catch(function (errors) {
+                        reject(_this4.onFail(errors.response.data));
                     });
-                    return false;
-                }
-
-                _this4.submiting = true;
-
-                return axios.request({
-                    method: method,
-                    url: url, data: _this4.getPostData()
-                }).then(function (response) {
-                    return _this4.onSuccess(response.data);
-                }).catch(function (errors) {
-                    return _this4.onFail(errors.response.data);
                 });
-            });
+            }));
         },
         onSuccess: function onSuccess(data) {
             this.submiting = false;

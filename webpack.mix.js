@@ -1,6 +1,4 @@
 const mix = require('laravel-mix');
-const tailwindcss = require('tailwindcss')
-require('laravel-mix-tailwind');
 require('laravel-mix-merge-manifest')
 /*
  |--------------------------------------------------------------------------
@@ -16,7 +14,7 @@ require('laravel-mix-merge-manifest')
 mix.setResourceRoot(`${process.env.MIX_APP_URI || ''}`);
 mix.webpackConfig({
     output: {
-        chunkFilename: `js/[name].js`,
+        chunkFilename: `[name].js`,
         filename: "[name].js",
         publicPath: `/${process.env.MIX_APP_URI ? process.env.MIX_APP_URI+'/' : ''}`
     }
@@ -29,10 +27,13 @@ mix
         'vue',
         'lodash',
         'jquery',
-        // 'bootstrap',
+        'bootstrap',
+        'popper.js',
         'bootstrap-vue',
+        'vee-validate',
         'vue-multiselect',
         'vue-quill-editor',
+        'quill',
         'vue-notification',
         'vue-js-modal',
         'vue2-filters',
@@ -44,7 +45,8 @@ mix
         'vue-cookie',
         'moment',
         'craftable',
-        'vue-tailwind',
+        'craftable/dist/ui',
+        '@coreui/coreui'
     ]);
 mix
     .js('resources/js/app.js', 'public/js')

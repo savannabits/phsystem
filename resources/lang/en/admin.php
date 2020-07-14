@@ -179,7 +179,255 @@ return [
         ],
     ],
 
+    'attendance-status' => [
+        'title' => 'Attendance Statuses',
+
+        'actions' => [
+            'index' => 'Attendance Statuses',
+            'create' => 'New Attendance Status',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'code' => 'Code',
+            'name' => 'Name',
+            'description' => 'Description',
+            'enabled' => 'Enabled',
+            
+        ],
+    ],
+
+    'resource-type' => [
+        'title' => 'Resource Types',
+
+        'actions' => [
+            'index' => 'Resource Types',
+            'create' => 'New Resource Type',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'description' => 'Description',
+            'enabled' => 'Enabled',
+            
+        ],
+    ],
+
+    'enrollment' => [
+        'title' => 'Enrollments',
+
+        'actions' => [
+            'index' => 'Enrollments',
+            'create' => 'New Enrollment',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'child_id' => 'Child',
+            'ph_class_id' => 'Ph class',
+            'enrollment_date' => 'Enrollment date',
+            'graduation_date' => 'Graduation date',
+            
+        ],
+    ],
+
+    'roll-call' => [
+        'title' => 'Roll Calls',
+
+        'actions' => [
+            'index' => 'Roll Calls',
+            'create' => 'New Roll Call',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'date' => 'Date',
+            'ph_class_id' => 'Ph class',
+            'created_by' => 'Created by',
+            'description' => 'Description',
+            
+        ],
+    ],
+
+    'attendance' => [
+        'title' => 'Attendances',
+
+        'actions' => [
+            'index' => 'Attendances',
+            'create' => 'New Attendance',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'enrollment_id' => 'Enrollment',
+            'roll_call_id' => 'Roll call',
+            'attendance_status_id' => 'Attendance status',
+            'comment' => 'Comment',
+            
+        ],
+    ],
+
+    'lesson-resource' => [
+        'title' => 'Lesson Resources',
+
+        'actions' => [
+            'index' => 'Lesson Resources',
+            'create' => 'New Lesson Resource',
+            'edit' => 'Edit :name',
+            'will_be_published' => 'LessonResource will be published at',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'title' => 'Title',
+            'description' => 'Description',
+            'published_at' => 'Published at',
+            'enabled' => 'Enabled',
+            'uploaded_by' => 'Uploaded by',
+            
+        ],
+    ],
+
+    'general-resource' => [
+        'title' => 'General Resources',
+
+        'actions' => [
+            'index' => 'General Resources',
+            'create' => 'New General Resource',
+            'edit' => 'Edit :name',
+            'will_be_published' => 'GeneralResource will be published at',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'title' => 'Title',
+            'description' => 'Description',
+            'published_at' => 'Published at',
+            'enabled' => 'Enabled',
+            'uploaded_by' => 'Uploaded by',
+            
+        ],
+    ],
+
+    'lesson' => [
+        'title' => 'Lessons',
+
+        'actions' => [
+            'index' => 'Lessons',
+            'create' => 'New Lesson',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'ph_class_id' => 'Ph class',
+            'facilitator_id' => 'Facilitator',
+            'lesson_date' => 'Lesson date',
+            'start_time' => 'Start time',
+            'end_time' => 'End time',
+            'objective' => 'Objective',
+            'activities' => 'Activities',
+            'biblical_passage' => 'Biblical passage',
+            'homework' => 'Homework',
+            'enabled' => 'Enabled',
+            
+        ],
+    ],
+
+    'relationship-type' => [
+        'title' => 'Relationship Types',
+
+        'actions' => [
+            'index' => 'Relationship Types',
+            'create' => 'New Relationship Type',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'description' => 'Description',
+            'enabled' => 'Enabled',
+            
+        ],
+    ],
+
+    'relative' => [
+        'title' => 'Relatives',
+
+        'actions' => [
+            'index' => 'Relatives',
+            'create' => 'New Relative',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'user_id' => 'User',
+            'child_id' => 'Child',
+            'relationship_type_id' => 'Relationship type',
+            'custom_relationship' => 'Custom relationship',
+            
+        ],
+    ],
+
+    'attendance-status' => [
+        'title' => 'Attendance Statuses',
+
+        'actions' => [
+            'index' => 'Attendance Statuses',
+            'create' => 'New Attendance Status',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'code' => 'Code',
+            'name' => 'Name',
+            'description' => 'Description',
+            'enabled' => 'Enabled',
+            
+        ],
+    ],
+
+    'relative' => [
+        'title' => 'Relatives',
+
+        'actions' => [
+            'index' => 'Relatives',
+            'create' => 'New Relative',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'user_id' => 'User',
+            'child_id' => 'Child',
+            'relationship_type_id' => 'Relationship type',
+            'custom_relationship' => 'Custom relationship',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

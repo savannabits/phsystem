@@ -1,79 +1,66 @@
-@extends('layouts.app')
+@extends('web.layout.base.layout.master')
+
+@section('title', trans('Login'))
 
 @section('content')
-    <login-component v-cloak inline-template>
-        <div class="container mx-auto">
-            <div class="flex flex-wrap justify-center">
-                <div class="w-full max-w-sm">
-                    <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+	<div class="container" id="app">
+	    <div class="row align-items-center justify-content-center auth">
+	        <div class="col-md-6 col-lg-5">
+				<div class="card">
+					<div class="card-block">
+						<auth-form
+								:action="'{{ route('login') }}'"
+								:data="{{json_encode(old())}}"
+								inline-template>
+							<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}" novalidate>
+								{{ csrf_field() }}
+								<div class="auth-header">
+									<h1 class="auth-title">{{ trans('savannabits/admin-auth::admin.login.title') }}</h1>
+									<p class="auth-subtitle">{{ trans('savannabits/admin-auth::admin.login.sign_in_text') }}</p>
+								</div>
+								<div class="auth-body">
+									@include('savannabits/admin-auth::admin.auth.includes.messages')
+									<div class="form-group" :class="{'has-danger': errors.has('email'), 'has-success': fields.email && fields.email.valid }">
+										<label for="email">{{ trans('savannabits/admin-auth::admin.auth_global.email') }}</label>
+										<div class="input-group input-group--custom">
+											<div class="input-group-addon"><i class="input-icon input-icon--mail"></i></div>
+											<input type="text" v-model="form.email" v-validate="'required|email'" class="form-control" :class="{'form-control-danger': errors.has('email'), 'form-control-success': fields.email && fields.email.valid}" id="email" name="email" placeholder="{{ trans('savannabits/admin-auth::admin.auth_global.email') }}">
+										</div>
+										<div v-if="errors.has('email')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('email') }}</div>
+									</div>
 
-                        <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                            {{ __('Login') }}
-                        </div>
+									<div class="form-group" :class="{'has-danger': errors.has('password'), 'has-success': fields.password && fields.password.valid }">
+										<label for="password">{{ trans('savannabits/admin-auth::admin.auth_global.password') }}</label>
+										<div class="input-group input-group--custom">
+											<div class="input-group-addon"><i class="input-icon input-icon--lock"></i></div>
+											<input type="password" v-model="form.password"  class="form-control" :class="{'form-control-danger': errors.has('password'), 'form-control-success': fields.password && fields.password.valid}" id="password" name="password" placeholder="{{ trans('savannabits/admin-auth::admin.auth_global.password') }}">
+										</div>
+										<div v-if="errors.has('password')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('password') }}</div>
+									</div>
 
-                        <form class="w-full p-6" method="POST" action="{{ route('login') }}">
-                            @csrf
+									<div class="form-group">
+										<input type="hidden" name="remember" value="1">
+										<button type="submit" class="btn btn-primary btn-block btn-spinner"><i class="fa"></i> {{ trans('savannabits/admin-auth::admin.login.button') }}</button>
+									</div>
+									<div class="form-group d-flex justify-content-between">
+										<a href="{{ url('/register') }}" class="">{{ trans('Create an Account') }}</a>
+										<a href="{{ route('password.request') }}" class="auth-ghost-link">{{ trans('savannabits/admin-auth::admin.login.forgot_password') }}</a>
+									</div>
+								</div>
+							</form>
+						</auth-form>
+					</div>
+				</div>
+	        </div>
+	    </div>
+	</div>
+@endsection
 
-                            <div class="flex flex-wrap mb-6">
-                                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
-                                    {{ __('E-Mail Address') }}:
-                                </label>
 
-                                <input id="email" type="email" class="form-input w-full @error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                <p class="text-red-500 text-xs italic mt-4">
-                                    {{ $message }}
-                                </p>
-                                @enderror
-                            </div>
-
-                            <div class="flex flex-wrap mb-6">
-                                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
-                                    {{ __('Password') }}:
-                                </label>
-
-                                <input id="password" type="password" class="form-input w-full @error('password') border-red-500 @enderror" name="password" required>
-
-                                @error('password')
-                                <p class="text-red-500 text-xs italic mt-4">
-                                    {{ $message }}
-                                </p>
-                                @enderror
-                            </div>
-
-                            <div class="flex mb-6">
-                                <label class="inline-flex items-center text-sm text-gray-700" for="remember">
-                                    <input type="checkbox" name="remember" id="remember" class="form-checkbox" {{ old('remember') ? 'checked' : '' }}>
-                                    <span class="ml-2">{{ __('Remember Me') }}</span>
-                                </label>
-                            </div>
-
-                            <div class="flex flex-wrap items-center">
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline ml-auto" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-
-                                @if (Route::has('register'))
-                                    <p class="w-full text-xs text-center text-gray-700 mt-8 -mb-4">
-                                        {{ __("Don't have an account?") }}
-                                        <a class="text-blue-500 hover:text-blue-700 no-underline" href="{{ route('register') }}">
-                                            {{ __('Register') }}
-                                        </a>
-                                    </p>
-                                @endif
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </login-component>
+@section('bottom-scripts')
+<script type="text/javascript">
+    // fix chrome password autofill
+    // https://github.com/vuejs/vue/issues/1331
+    document.getElementById('password').dispatchEvent(new Event('input'));
+</script>
 @endsection

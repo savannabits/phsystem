@@ -75,6 +75,7 @@ class PhClassesController extends Controller
 
         // Store the PhClass
         $phClass = new PhClass($sanitized);
+        $phClass->slug = str_slug($phClass->name);
         $phClass->saveOrFail();
         if ($request->ajax()) {
             return ['redirect' => url('ph-classes'), 'message' => trans('savannabits/admin-ui::admin.operation.succeeded')];

@@ -1,5 +1,6 @@
-import { BaseUpload } from 'craftable';
+import BaseUpload from './base/BaseUpload';
 
 Vue.component('media-upload', {
-    mixins: [BaseUpload]
+    mixins: [BaseUpload],
+    props:["baseUrl"],
 });
