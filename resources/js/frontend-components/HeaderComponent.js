@@ -6,7 +6,10 @@ const HeaderComponent = {
     data: function () {
         return {
             form: {
-            }
+            },
+            profile: {
+
+            },
         }
     },
     mounted() {
@@ -24,6 +27,11 @@ const HeaderComponent = {
                     console.err(err);
                     reject(err);
                 })
+            }))
+        },
+        async getProfile() {
+            return new Promise((resolve => {
+
             }))
         }
     }

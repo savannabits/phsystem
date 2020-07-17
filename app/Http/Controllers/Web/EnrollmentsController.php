@@ -34,7 +34,7 @@ class EnrollmentsController extends Controller
     {
         // create and AdminListing instance for a specific model and
         $data = SavbitsHelper::listing(Enrollment::class, $request)->customQuery(function($q) {
-            //TODO: Insert your query modification here
+            $q->with(["child", "phClass"]);
         })->process();
 
         if ($request->ajax()) {

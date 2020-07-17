@@ -78,8 +78,8 @@
                                         </td>
 
                                     <td>@{{ item.id }}</td>
-                                        <td>@{{ item.child_id }}</td>
-                                        <td>@{{ item.ph_class_id }}</td>
+                                        <td>@{{ `${item.child.first_name} ${item.child.last_name}`}} (@{{`age: ${item.child.age}`}})</td>
+                                        <td>@{{ item.ph_class.name }} (@{{ `${item.ph_class.minimum_age} - ${item.ph_class.maximum_age} yrs` }})</td>
                                         <td>@{{ item.enrollment_date | date }}</td>
                                         <td>@{{ item.graduation_date | date }}</td>
 

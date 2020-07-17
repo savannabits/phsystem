@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PhClass;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,7 +20,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -29,5 +30,16 @@ class HomeController extends Controller
     public function backend()
     {
         return view('web.backend');
+    }
+    public function profile(Request $request) {
+        return view('auth.profile');
+    }
+    public function manageClass(Request $request, $slug) {
+        try {
+            $class = PhClass::whereSlug($slug)->firstOrFail();
+            return view("single-class",compact('class'));
+        } catch (\Throwable $exception) {
+            return redirect()->back()->with(['error' => $exception->getMessage()]);
+        }
     }
 }

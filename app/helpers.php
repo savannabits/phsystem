@@ -44,3 +44,27 @@ function makeBreadCrumbs(array $breadcrumbs) {
 </nav>';
     return $html;
 }
+
+/**
+ * @return \App\Child[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|\Tightenco\Collect\Support\Collection
+ */
+function myChildren() {
+    if (!Auth::check()) {
+        return collect([]);
+    }
+    if (!Auth::user()->hasRole('Parent')) return collect([]);
+    $children = \App\Child::whereHas("relatives",function ($q) {
+        $q->where("user_id", "=", Auth::id());
+    })->whereActive(true)->with(['enrollments.phClass'])->get();
+    return $children;
+}
+function phClasses() {
+    if (!Auth::check()) {
+        return collect([]);
+    }
+    if (!Auth::user()->can('ph-class.index')) {
+        return collect([]);
+    }
+    $classes = \App\PhClass::whereEnabled(true)->with(["children"])->orderBy('minimum_age')->get();
+    return $classes;
+}

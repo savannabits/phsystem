@@ -26,11 +26,12 @@ class StoreAttendance extends FormRequest
     public function rules(): array
     {
         return [
-            'enrollment_id' => ['required', 'string'],
-            'roll_call_id' => ['required', 'string'],
-            'attendance_status_id' => ['required', 'string'],
+            'enrollment_id' => ['required', 'integer'],
+            'roll_call_id' => ['required', 'integer'],
+            'attendance_status_id' => ['required', 'integer'],
+//            'attendance_status' => ['required', 'array'],
             'comment' => ['nullable', 'string'],
-            
+
         ];
     }
 

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../templates/live-dinner/.idea/live-dinner.iml" filepath="$PROJECT_DIR$/../templates/live-dinner/.idea/live-dinner.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/phsystem.iml" filepath="$PROJECT_DIR$/.idea/phsystem.iml" />
     </modules>
   </component>

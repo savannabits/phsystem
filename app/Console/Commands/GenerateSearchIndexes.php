@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Child;
 use App\Permission;
+use App\Relative;
 use App\Role;
 use App\User;
 use Illuminate\Console\Command;
@@ -25,6 +27,9 @@ class GenerateSearchIndexes extends Command
     private $models = [
         Role::class,
         Permission::class,
+        User::class,
+        Relative::class,
+        Child::class
     ];
 
     /**

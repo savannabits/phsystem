@@ -29,11 +29,29 @@ Route::group(['middleware' => "auth:sanctum,api", "namespace" =>"Api", "as" =>"a
         Route::post("{role}/permissions/toggle", "RoleController@togglePermission")->name("permissions.toggle");
         Route::post("{role}/permissions/toggle-all", "RoleController@toggleAllPermissions")->name("permissions.toggle-all");
     });
-    Route::group(["prefix" => "avatars", "as" => "avatars."],function() {
-        Route::post("{child}/upload","ChildController@uploadAvatar")->name('upload');
+
+    Route::group(["prefix" => "profile", "as" => "profile."],function() {
+        Route::get('', "ProfileController@show")->name('show');
+        Route::post("avatar","ProfileController@uploadAvatar")->name('avatar.upload');
+        Route::put('',"ProfileController@update")->name('update');
+        Route::put('password',"ProfileController@changePassword")->name('change-password');
     });
 
     Route::apiResource("children", "ChildController");
+    Route::group(["prefix" => "children", "as" => "children."],function() {
+        Route::post("{child}/avatar","ChildController@uploadAvatar")->name('avatar.upload');
+    });
+
+
     Route::apiResource("users", "UserController");
     Route::apiResource("relationship-types", "RelationshipTypeController");
+    Route::apiResource("attendance-statuses", "AttendanceStatusController");
+    Route::apiResource("relatives","RelativeController");
+    Route::apiResource("roll-calls","RollCallController");
+    Route::apiResource("ph-classes", "PhClassController");
+    Route::group(["prefix" => "ph-classes", "as" => "ph-classes."],function() {
+        Route::get("{ph_class}/roll-calls","PhClassController@rollCalls")->name('roll-calls');
+        Route::get("{ph_class}/current-enrollments","PhClassController@getCurrentChildren")->name('current-children');
+    });
+    Route::apiResource("attendances","AttendanceController");
 });

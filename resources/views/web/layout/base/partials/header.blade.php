@@ -10,8 +10,8 @@
         <li class="nav-item dropdown">
             <a role="button" class="dropdown-toggle nav-link">
                 <span>
-                    @if(Auth::check() && Auth::user()->avatar_thumb_url)
-                        <img src="{{ url(Auth::user()->avatar_thumb_url) }}" class="avatar-photo">
+                    @if(Auth::check() && Auth::user()->avatar_thumb)
+                        <img src="{{ url(Auth::user()->avatar_thumb) }}" class="avatar-photo">
                     @elseif(Auth::check() && Auth::user()->first_name && Auth::user()->last_name)
                         <span class="avatar-initials">{{ mb_substr(Auth::user()->first_name, 0, 1) }}{{ mb_substr(Auth::user()->last_name, 0, 1) }}</span>
                     @elseif(Auth::check() && Auth::user()->name)

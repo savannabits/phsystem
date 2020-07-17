@@ -24,7 +24,8 @@ var HeaderComponent = {
   props: [],
   data: function data() {
     return {
-      form: {}
+      form: {},
+      profile: {}
     };
   },
   mounted: function mounted() {
@@ -58,6 +59,22 @@ var HeaderComponent = {
             }
           }
         }, _callee);
+      }))();
+    },
+    getProfile: function getProfile() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", new Promise(function (resolve) {}));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   }

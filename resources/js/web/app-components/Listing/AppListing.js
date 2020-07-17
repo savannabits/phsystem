@@ -87,7 +87,7 @@ export default {
                 this.$validator.validateAll()
                     .then(function (result) {
                     if (!result) {
-                        reject("The form contains  invalid fields");
+                        reject("Validation failed. Please check that your form data is valid.");
                         return false;
                     }
 
@@ -97,9 +97,11 @@ export default {
                         method: method,
                         url: url, data: _this4.getPostData()
                     }).then(function (response) {
-                        resolve(_this4.onSuccess(response.data));
+                        _this4.onSuccess(response.data)
+                        resolve(response);
                     }).catch(function (errors) {
-                        reject(_this4.onFail(errors.response.data));
+                        _this4.onFail(errors.response?.data || errors)
+                        reject(errors);
                     });
                 });
             }));

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset("template/assets/vendors/fontawesome-free/css/all.min.css")}}">
     <link href="{{ mix('/css/admin.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset("template/assets/css/style.css")}}">
+    <link rel="stylesheet" href="{{asset('vendors/animate.min.css')}}">
     @stack('styles')
     <script type="javascript">
         window.Laravel = {
@@ -22,96 +23,80 @@
             apiPrefix: {{env('MIX_API_PREFIX','api')}}
         };
     </script>
+    <script src="{{asset('vendors/wow.min.js')}}"></script>
+    <script>
+        new WOW().init();
+    </script>
 </head>
 
-<body>
+<body class="bg-light">
 <div class="p-0 m-0" id="app">
     @include('layouts.partials.header')
-    <main class="page-about">
+    <main class="">
         <div class="container">
-            <section class="page-header">
-                <h1>@yield('page-title',"")</h1>
-                @yield('breadcrumbs')
-            </section>
-            <section class="foi-page-section pt-0">
+            <div class="">
+                <h3>@yield('page-title',"")</h3>
+                <hr>
+{{--                @yield('breadcrumbs')--}}
+            </div>
+            <div class="pt-0">
+                <div  class="wow bounceIn">
+                    <notifications  position="top center">
+                        <template slot="body" slot-scope="props">
+                            <div class="savbits-notification" :class="{'success' : props.item.type === 'success', 'error': props.item.type==='error','warn': props.item.type==='warn'}">
+                                <a class="title">
+                                    @{{props.item.title}}
+                                </a>
+                                <a class="close" @click="props.close">
+                                    <i class="fa fa-fw fa-close"></i>
+                                </a>
+                                <div v-html="props.item.text"></div>
+                            </div>
+                        </template>
+                    </notifications>
+                </div>
                 @yield('content')
-            </section>
+            </div>
         </div>
     </main>
-    <footer class="foi-footer text-white">
+    <footer class="foi-footer bg-light text-white">
         <div class="container">
-            <div class="row footer-content">
-                <div class="col-xl-6 col-lg-7 col-md-8">
-                    <h2 class="mb-0">Do you want to know more or just have a question? write to us.</h2>
-                </div>
-                <div class="col-md-4 col-lg-5 col-xl-6 py-3 py-md-0 d-md-flex align-items-center justify-content-end">
-                    <a href="contact.html" class="btn btn-danger btn-lg">Contact form</a>
-                </div>
-            </div>
             <div class="row footer-widget-area">
                 <div class="col-md-3">
-                    <div class="py-3">
-                        <img src="{{asset("template/assets/images/logo-white.svg")}}" alt="FOI">
-                    </div>
-                    <p class="font-os font-weight-semibold mb3">Get our mobile app</p>
-                    <div>
-                        <button class="btn btn-app-download mr-2"><img src="{{asset("template/assets/images/ios.svg")}}" alt="App store"></button>
-                        <button class="btn btn-app-download"><img src="{{asset("template/assets/images/android.svg")}}" alt="play store"></button>
+                    <div class="py-3 bg-white">
+                        <img src="{{asset("images/ph-transparent.png")}}" alt="PH" height="200">
                     </div>
                 </div>
                 <div class="col-md-3 mt-3 mt-md-0">
                     <nav>
                         <ul class="nav flex-column">
+                            @role('Administrator')
                             <li class="nav-item">
-                                <a href="#!" class="nav-link">Account</a>
+                                <a href="{{route('backend')}}" class="nav-link">Backend</a>
                             </li>
+                            @endrole
+                            @role('Facilitator')
                             <li class="nav-item">
-                                <a href="#!" class="nav-link">My tasks</a>
+                                <a href="#!" class="nav-link">My Lessons</a>
                             </li>
+                            @endrole
+                            @role('Parent')
                             <li class="nav-item">
-                                <a href="#!" class="nav-link">Projects</a>
+                                <a href="#!" class="nav-link">My Children</a>
                             </li>
+                            @endrole
                             <li class="nav-item">
                                 <a href="#!" class="nav-link">Edit profile</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">Activity</a>
-                            </li>
                         </ul>
                     </nav>
                 </div>
-                <div class="col-md-3 mt-3 mt-md-0">
-                    <nav>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">Careers <span class="badge badge-pill badge-secondary ml-3">Hiring</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">Shop with us</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+
                 <div class="col-md-3 mt-3 mt-md-0">
                     <p>
                         &copy; savannabits 2020 <a href="https://www.bootstrapdash.com" target="_blank" rel="noopener noreferrer" class="text-reset">Savannabits</a>.
                     </p>
                     <p>All rights reserved.</p>
-                    <nav class="social-menu">
-                        <a href=""><img src="{{asset("template/assets/images/facebook.svg")}}" alt="facebook"></a>
-                        <a href=""><img src="{{asset("template/assets/images/instagram.svg")}}" alt="instagram"></a>
-                        <a href=""><img src="{{asset("template/assets/images/twitter.svg")}}" alt="twitter"></a>
-                        <a href=""><img src="{{asset("template/assets/images/youtube.svg")}}" alt="youtube"></a>
-                    </nav>
                 </div>
             </div>
         </div>

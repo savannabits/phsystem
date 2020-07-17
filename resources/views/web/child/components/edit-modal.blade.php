@@ -7,6 +7,17 @@
     </template>
     <template v-slot:default="{ok}">
         <b-form @submit.stop.prevent="ok()">
+            <b-row class="text-center">
+                <b-col class="text-center">
+                    <div class="mb-2">
+                        <b-img-lazy height="150" blank-color="#777" :src="form.avatarUrl" rounded></b-img-lazy>
+                    </div>
+                    <b-button variant="primary" style="min-width: 150px" v-b-modal:avatar-upload-modal><strong>Change Avatar</strong></b-button>
+                    <b-modal id="avatar-upload-modal" no-close-on-backdrop no-close-on-esc>
+                        <avatar-uploader :initial-avatar="form.avatarUrl" @crop="uploadCroppedAvatar"></avatar-uploader>
+                    </b-modal>
+                </b-col>
+            </b-row>
             <b-form-group label="Names">
                 <b-input-group>
                     <b-form-input v-validate="'required'" :state="validateState('first_name')"
@@ -92,6 +103,9 @@
                         v-model="relative.custom_relationship"
                         :state="validateState(`custom_relationship_${key}`)"
                     ></b-form-input>
+                    <b-input-group-append>
+                        <b-button @click="removeRelative($event, relative,key)"><i class="fa fa-remove text-danger"></i></b-button>
+                    </b-input-group-append>
                     <b-form-invalid-feedback v-if="errors.has(`relative_${key}`)">@{{ errors.first(`relative_${key}`) }}</b-form-invalid-feedback>
                     <b-form-invalid-feedback v-if="errors.has(`relationship_type_${key}`)">@{{ errors.first(`relationship_type_${key}`) }}</b-form-invalid-feedback>
                     <b-form-invalid-feedback v-if="errors.has(`custom_relationship_${key}`)">@{{ errors.first(`custom_relationship_${key}`) }}</b-form-invalid-feedback>
@@ -109,7 +123,7 @@
                     <label for="bio" class="font-weight-bolder">Biography|Info</label>
                     <div>
                         <div>
-                            <wysiwyg v-model="form.bio" v-validate="'required'" id="bio" name="bio" :config="mediaWysiwygConfig"></wysiwyg>
+                            <wysiwyg v-model="form.bio" v-validate="'required'" id="bio" name="bio"></wysiwyg>
                         </div>
                         <div v-if="errors.has('bio')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('bio') }}</div>
                     </div>

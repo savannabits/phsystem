@@ -206,20 +206,22 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "button success",
-            attrs: { disabled: _vm.loading, type: "button" },
-            on: { click: _vm.onCrop }
-          },
-          [
-            _vm.loading
-              ? _c("i", { staticClass: "fa fa-spinner fa-spin" })
-              : _vm._e(),
-            _vm._v(" CROP")
-          ]
-        )
+        _vm.image
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-success btn-sm p-2",
+                attrs: { disabled: _vm.loading, type: "button" },
+                on: { click: _vm.onCrop }
+              },
+              [
+                _vm.loading
+                  ? _c("i", { staticClass: "fa fa-spinner fa-spin" })
+                  : _vm._e(),
+                _vm._v(" Crop & upload")
+              ]
+            )
+          : _vm._e()
       ])
     ],
     1

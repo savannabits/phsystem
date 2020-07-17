@@ -46,10 +46,12 @@ Route::get('/', function () {
 });*/
 Auth::routes();
 Route::middleware(['auth'])->any('logout',"Auth\LoginController@logout")->name('web.logout');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/app', 'HomeController@index')->name('home');
 Route::get('/backend', 'HomeController@backend')->name('backend');
-
-
+Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::group(["middleware" => "auth","prefix"=>"app","as" => "app."], function() {
+    Route::get('classes/{slug}', "HomeController@manageClass")->name('classes.manage');
+});
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('auth.defaults.guard')])->group(static function () {

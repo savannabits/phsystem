@@ -27,10 +27,9 @@ class StoreRollCall extends FormRequest
     {
         return [
             'date' => ['required', 'date'],
-            'ph_class_id' => ['required', 'string'],
-            'created_by' => ['required', 'string'],
+            'ph_class' => ['required', 'array'],
             'description' => ['nullable', 'string'],
-            
+
         ];
     }
 

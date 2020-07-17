@@ -36,7 +36,7 @@ class StoreChild extends FormRequest
             'hobbies'           => ['nullable', 'array'],
             'location'          => ['nullable', 'string'],
             'active'            => ['required', 'boolean'],
-            'enrollment_date'   => ['required', 'date'],
+            'enrollment_date'   => ['nullable', 'date'],
             'relatives'         => ["nullable", "array"],
         ];
     }

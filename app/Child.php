@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Savannabits\Media\HasMedia\HasMediaCollectionsTrait;
 use Savannabits\Media\HasMedia\HasMediaThumbsTrait;
 use Savannabits\Media\HasMedia\ProcessMediaTrait;
@@ -13,7 +14,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Child extends Model implements HasMedia
 {
-    use ProcessMediaTrait, HasMediaThumbsTrait, HasMediaCollectionsTrait;
+    use ProcessMediaTrait, HasMediaThumbsTrait, HasMediaCollectionsTrait, Searchable;
     protected $fillable = [
         'first_name',
         'middle_names',
@@ -28,6 +29,17 @@ class Child extends Model implements HasMedia
         'enrollment_date',
 
     ];
+    protected $search = [
+        'id',
+        'first_name',
+        'middle_names',
+        'last_name',
+        'bio',
+        'gender',
+        'dob',
+        'school',
+        'location',
+    ];
     protected $casts = [
         "hobbies" => "array",
         "active" => "boolean"
@@ -41,7 +53,7 @@ class Child extends Model implements HasMedia
         'updated_at',
     ];
 
-    protected $appends = ['resource_url', 'avatarUrl', 'avatarThumb','age'];
+    protected $appends = ['resource_url','full_name', 'avatarUrl', 'avatarThumb','age'];
 
     /* ************************ ACCESSOR ************************* */
 
@@ -49,6 +61,10 @@ class Child extends Model implements HasMedia
         if (!$this->dob) {return null;}
         return CarbonInterval::make(now()->diff( Carbon::parse($this->dob)))->years;
     }
+    public function getFullNameAttribute() {
+        return $this->first_name." ".($this->middle_names ? "$this->middle_names $this->last_name":"$this->last_name");
+    }
+
     public function getResourceUrlAttribute()
     {
         return url('/children/'.$this->getKey());
@@ -57,14 +73,14 @@ class Child extends Model implements HasMedia
         /**@var Media $media*/
         $media = collect($this->getMedia('avatar'))->last();
         if($media)
-            return url($media->getUrl());
+            return $media->getFullUrl();
         return '';
     }
     public function getAvatarThumbAttribute() {
         /**@var Media $media*/
         $media = collect($this->getMedia('avatar'))->last();
         if($media)
-            return $media->getUrl('thumb_200');
+            return $media->getFullUrl('thumb_200');
         return '';
     }
     public function registerMediaCollections() {
@@ -115,5 +131,17 @@ class Child extends Model implements HasMedia
     }
     public function enrollments() {
         return $this->hasMany(Enrollment::class, "child_id");
+    }
+    public function phClasses() {
+        return $this->belongsToMany(PhClass::class, "enrollments","child_id","ph_class_id");
+    }
+    public function currentEnrollment() {
+        return $this->belongsTo(Enrollment::class, "current_enrollment_id","id");
+    }
+    public function toSearchableArray()
+    {
+        return array_merge(collect($this->only($this->search))->toArray(),[
+            "hobbies"  => json_encode($this->hobbies)
+        ]);
     }
 }

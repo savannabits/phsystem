@@ -1,5 +1,94 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["child-listing"],{
 
+/***/ "./resources/js/mixins/ImageUtils.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mixins/ImageUtils.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+  methods: {
+    uploadImage: function uploadImage(dataURL, endpoint) {
+      var _arguments = arguments,
+          _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var inputName, vm, form, config;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                inputName = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : 'image';
+                vm = _this;
+                console.log("Beginning upload");
+                form = new FormData();
+                form.append(inputName, _this.dataURItoBlob(dataURL));
+                config = {
+                  headers: {
+                    'content-type': 'multipart/form-data'
+                  }
+                };
+                return _context.abrupt("return", new Promise(function (resolve, reject) {
+                  axios.post(endpoint, form, config).then(function (res) {
+                    resolve(res.data.payload);
+                  })["catch"](function (err) {
+                    reject(err.message || err);
+                  });
+                }));
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    dataURItoBlob: function dataURItoBlob(dataURI) {
+      // convert base64 to raw binary data held in a string
+      // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+      var byteString = atob(dataURI.split(',')[1]); // separate out the mime component
+
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]; // write the bytes of the string to an ArrayBuffer
+
+      var ab = new ArrayBuffer(byteString.length);
+      var ia = new Uint8Array(ab);
+
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      } //Old Code
+      //write the ArrayBuffer to a blob, and you're done
+      //var bb = new BlobBuilder();
+      //bb.append(ab);
+      //return bb.getBlob(mimeString);
+      //New Code
+
+
+      return new Blob([ab], {
+        type: mimeString
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/web/child/Listing.js":
 /*!*******************************************!*\
   !*** ./resources/js/web/child/Listing.js ***!
@@ -12,6 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _app_components_Listing_AppListing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app-components/Listing/AppListing */ "./resources/js/web/app-components/Listing/AppListing.js");
+/* harmony import */ var _mixins_ImageUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/ImageUtils */ "./resources/js/mixins/ImageUtils.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -37,8 +127,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_app_components_Listing_AppListing__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  mixins: [_app_components_Listing_AppListing__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_ImageUtils__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       form: {
@@ -83,8 +174,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         hobbies: [],
         location: '',
         active: false,
-        enrollment_date: ''
+        enrollment_date: '',
+        relatives: []
       };
+    },
+    uploadCroppedAvatar: function uploadCroppedAvatar(_ref) {
+      var _this = this;
+
+      var coordinates = _ref.coordinates,
+          canvas = _ref.canvas;
+      var vm = this;
+      var img = canvas.toDataURL(); // this.$refs.avatarThumb.src = img;
+
+      this.loading = true;
+      this.uploadImage(img, "/api/children/".concat(vm.form.id, "/avatar"), 'avatar').then(function (res) {// this.$root.$emit("avatar-changed");
+      })["finally"](function (res) {
+        vm.fetchChild(vm.form.id);
+        _this.loading = false;
+      }); // this.form.avatar[0].path ="";
     },
     showChildCreateModal: function showChildCreateModal() {
       var vm = this;
@@ -112,8 +219,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       this.form.relatives.push(relative);
     },
+    removeRelative: function removeRelative(e, relative, index) {
+      var vm = this;
+      var loading = vm.$loading.show();
+
+      if (relative.id) {
+        // Call server to remove
+        axios["delete"]("/api/relatives/".concat(relative.id)).then(function (res) {
+          vm.$notify({
+            type: "success",
+            title: "Relative deleted",
+            text: res.data.message
+          });
+        })["catch"](function (err) {
+          var _err$response, _err$response$data;
+
+          vm.$notify({
+            type: "error",
+            title: "ERROR",
+            text: ((_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : _err$response$data.message) || err.message || err
+          });
+        })["finally"](function (res) {
+          if (vm.form.id) {
+            vm.fetchChild(vm.form.id);
+          }
+
+          loading.hide();
+        });
+      } else {
+        vm.form.relatives.splice(index, 1);
+        loading.hide();
+      }
+    },
     fetchChild: function fetchChild(id) {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var vm;
@@ -121,19 +260,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                vm = _this;
+                vm = _this2;
                 return _context.abrupt("return", new Promise(function (resolve, reject) {
                   axios.get("/api/children/".concat(id)).then(function (res) {
                     vm.form = _objectSpread({}, res.data.payload);
                     resolve(res);
                   })["catch"](function (err) {
-                    var _err$response, _err$response$data;
+                    var _err$response2, _err$response2$data;
 
                     vm.resetForm();
                     vm.$notify({
                       title: "Server Error",
                       type: "error",
-                      text: ((_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : _err$response$data.message) || err.message || err
+                      text: ((_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : (_err$response2$data = _err$response2.data) === null || _err$response2$data === void 0 ? void 0 : _err$response2$data.message) || err.message || err
                     });
                     reject(err);
                   });
@@ -148,7 +287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     fetchRelationshipTypes: function fetchRelationshipTypes() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var vm;
@@ -156,7 +295,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                vm = _this2;
+                vm = _this3;
                 return _context2.abrupt("return", new Promise(function (resolve, reject) {
                   axios.get("/api/relationship-types").then(function (res) {
                     vm.relationshipTypes = res.data.payload;
@@ -177,7 +316,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     fetchUsers: function fetchUsers() {
       var _arguments = arguments,
-          _this3 = this;
+          _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var query, vm, nextPage;
@@ -186,7 +325,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 query = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : null;
-                vm = _this3;
+                vm = _this4;
                 nextPage = vm.usersRepo.current_page ? vm.usersRepo.current_page + 1 : 1;
                 return _context3.abrupt("return", new Promise(function (resolve, reject) {
                   if (vm.usersRepo.current_page && !vm.usersRepo.next_page_url) {
@@ -240,15 +379,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           vm.$notify({
             title: "SUCCESS",
             type: 'success',
-            text: "Update successful"
+            text: res.data.message
           });
         })["catch"](function (err) {
-          var _err$response2, _err$response2$data;
+          var _err$response3, _err$response3$data;
 
           vm.$notify({
             title: "ERROR",
             type: "error",
-            text: ((_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : (_err$response2$data = _err$response2.data) === null || _err$response2$data === void 0 ? void 0 : _err$response2$data.message) || err.message || err
+            text: ((_err$response3 = err.response) === null || _err$response3 === void 0 ? void 0 : (_err$response3$data = _err$response3.data) === null || _err$response3$data === void 0 ? void 0 : _err$response3$data.message) || err.message || err
           });
         })["finally"](function (res) {
           vm.fetchChild(vm.form.id);
@@ -261,15 +400,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           vm.$notify({
             title: "SUCCESS",
             type: 'success',
-            text: "Update successful"
+            text: res.data.message
           });
         })["catch"](function (err) {
-          var _err$response3, _err$response3$data;
+          var _err$response4, _err$response4$data;
 
           vm.$notify({
             title: "ERROR",
             type: "error",
-            text: ((_err$response3 = err.response) === null || _err$response3 === void 0 ? void 0 : (_err$response3$data = _err$response3.data) === null || _err$response3$data === void 0 ? void 0 : _err$response3$data.message) || err.message || err
+            text: ((_err$response4 = err.response) === null || _err$response4 === void 0 ? void 0 : (_err$response4$data = _err$response4.data) === null || _err$response4$data === void 0 ? void 0 : _err$response4$data.message) || err.message || err
           });
         })["finally"](function (res) {
           vm.loadData();

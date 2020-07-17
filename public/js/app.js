@@ -12638,8 +12638,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('login-component', function
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('home-component', function () {
   return __webpack_require__.e(/*! import() | home-component */ "home-component").then(__webpack_require__.bind(null, /*! ./HomeComponent */ "./resources/js/frontend-components/HomeComponent.js"));
 });
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ph-class-component', function () {
+  return Promise.all(/*! import() | /js/ph-class-component */[__webpack_require__.e("vendors~/js/ph-class-component"), __webpack_require__.e("/js/ph-class-component")]).then(__webpack_require__.bind(null, /*! ./PhClassComponent */ "./resources/js/frontend-components/PhClassComponent.js"));
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('profile-component', function () {
+  return __webpack_require__.e(/*! import() | /js/profile-component */ "/js/profile-component").then(__webpack_require__.bind(null, /*! ./ProfileComponent */ "./resources/js/frontend-components/ProfileComponent.js"));
+});
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('header-component', function () {
   return __webpack_require__.e(/*! import() | header-component */ "header-component").then(__webpack_require__.bind(null, /*! ./HeaderComponent */ "./resources/js/frontend-components/HeaderComponent.js"));
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('avatar-uploader', function () {
+  return Promise.all(/*! import() | /js/avatar-uploader */[__webpack_require__.e("vendors~/js/image-uploader~avatar-uploader"), __webpack_require__.e("avatar-uploader")]).then(__webpack_require__.bind(null, /*! ../web/app-components/Form/base/AvatarUploader */ "./resources/js/web/app-components/Form/base/AvatarUploader.vue"));
 });
 
 /***/ }),
@@ -13183,7 +13192,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
                 return _context2.abrupt("return", new Promise(function (resolve, reject) {
                   _this.$validator.validateAll().then(function (result) {
                     if (!result) {
-                      reject("The form contains  invalid fields");
+                      reject("Validation failed. Please check that your form data is valid.");
                       return false;
                     }
 
@@ -13193,9 +13202,15 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
                       url: url,
                       data: _this4.getPostData()
                     }).then(function (response) {
-                      resolve(_this4.onSuccess(response.data));
+                      _this4.onSuccess(response.data);
+
+                      resolve(response);
                     })["catch"](function (errors) {
-                      reject(_this4.onFail(errors.response.data));
+                      var _errors$response;
+
+                      _this4.onFail(((_errors$response = errors.response) === null || _errors$response === void 0 ? void 0 : _errors$response.data) || errors);
+
+                      reject(errors);
                     });
                   });
                 }));

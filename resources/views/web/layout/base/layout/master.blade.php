@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 	{{-- TODO translatable suffix --}}
-    <title>@yield('title', 'MC') - Materials Control</title>
+    <title>@yield('title', 'PH System')</title>
 
 	@include('web.layout.base.partials.main-styles')
 

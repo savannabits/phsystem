@@ -1,359 +1,474 @@
-@extends('layouts.app')
-@section('page-title','Welcome')
-@section("header-classes",'landing-header')
-@section('header-content')
-    <div class="header-content">
-        <div class="row">
-            <div class="col-md-6">
-                <h1>Great app that makes your life awesome</h1>
-                <p class="text-dark">He has led a remarkable campaign, defying the traditional mainstream parties courtesy of his En Marche! movement.</p>
-                <a href="{{route('home')}}" class="btn btn-primary mb-4">Get Started</a>
-                <div class="my-2">
-                    <p class="header-app-download-title">GET OUR MOBILE APP</p>
+@extends('layouts.frontend')
+@section('title','Welcome Home')
+@section('description',"Project Heritage, a place where our children will grow to experience love from God and the world")
+@section('content')
+    <!-- Start slides -->
+    <div id="slides" class="cover-slides">
+        <ul class="slides-container">
+            <li class="text-left">
+                <img src="{{asset('front/images/slider-01.jpg')}}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Project Heritage</strong></h1>
+                            <p class="m-b-40">See how your users experience your website in realtime or view  <br>
+                                trends to see any changes in performance over time.</p>
+                            <p><a class="btn btn-lg btn-circle btn-primary" href="#">Reservation</a></p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn btn-app-download mr-2"><img src="{{asset("template/assets/images/ios.svg")}}" alt="App store"></button>
-                    <button class="btn btn-app-download"><img src="{{asset("template/assets/images/android.svg")}}" alt="play store"></button>
+            </li>
+            <li class="text-left">
+                <img src="{{asset('front/images/slider-02.jpg')}}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Live Dinner Restaurant</strong></h1>
+                            <p class="m-b-40">See how your users experience your website in realtime or view  <br>
+                                trends to see any changes in performance over time.</p>
+                            <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <img src="{{asset("template/assets/images/app_1.png")}}" alt="app" width="388px" class="img-fluid">
+            </li>
+            <li class="text-left">
+                <img src="{{asset('front/images/slider-03.jpg')}}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Yamifood Restaurant</strong></h1>
+                            <p class="m-b-40">See how your users experience your website in realtime or view  <br>
+                                trends to see any changes in performance over time.</p>
+                            <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <!-- End slides -->
+
+    <!-- Start About -->
+    <div class="about-section-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                    <div class="inner-column">
+                        <h1>Welcome To <span>Live Dinner Restaurant</span></h1>
+                        <h4>Little Story</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et sem. </p>
+                        <p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem pulvinar.</p>
+                        <a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <img src="{{asset('front/images/about-img.jpg')}}" alt="" class="img-fluid">
+                </div>
             </div>
         </div>
     </div>
-    @stop
-@section('content')
-    <section class="py-5 mb-5">
-        <div class="container">
-            <h2 class="section-title">Application Features</h2>
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5>Secure Data</h5>
-                    <p class="text-dark">No matter what kind of home you have to share, you can increase your earnings.</p>
-                    <p class="mb-5"><a href="#!" class="text-primary mb-5">Find out More</a></p>
-                    <h5>Fully functional</h5>
-                    <p class="text-dark">No matter what kind of home you have to share, you can increase your earnings.</p>
-                    <p class="mb-5"><a href="#!" class="text-primary mb-5">Find out More</a></p>
-                </div>
-                <div class="col-lg-4 mb-3 mb-lg-0">
-                    <h5>Live Chat</h5>
-                    <p class="text-dark">No matter what kind of home you have to share, you can increase your earnings.</p>
-                    <p class="mb-5"><a href="#!" class="text-primary mb-5">Find out More</a></p>
-                    <h5>Powerful dashboard</h5>
-                    <p class="text-dark">No matter what kind of home you have to share, you can increase your earnings.</p>
-                    <p class="mb-5"><a href="#!" class="text-primary mb-5">Find out More</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h6 class="text-gray font-os font-weight-semibold">Trusted by the world's best</h6>
-                    <div id="landingClientCarousel" class="carousel slide landing-client-carousel" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <div class="d-flex flex-wrap justify-content-center">
-                                    <div class="clients-logo">
-                                        <img src="{{asset("template/assets/images/clients/slack.svg")}}" alt="Slack" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src="{{asset("template/assets/images/clients/spotify.svg")}}" alt="Spotify" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src="{{asset("template/assets/images/clients/paypal.svg")}}" alt="Paypal" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src="{{asset("template/assets/images/clients/amazon.svg")}}" alt="Amazon" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src="{{asset("template/assets/images/clients/google.svg")}}" alt="Google" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src="{{asset("template/assets/images/clients/samsung.svg")}}" alt="Samsung" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="d-flex flex-wrap justify-content-center">
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/slack.svg" )}} alt="Slack" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/spotify.svg" )}} alt="Spotify" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/paypal.svg" )}} alt="Paypal" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/amazon.svg" )}} alt="Amazon" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/google.svg" )}} alt="Google" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/samsung.svg" )}} alt="Samsung" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="d-flex flex-wrap justify-content-center">
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/slack.svg" )}} alt="Slack" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/spotify.svg" )}} alt="Spotify" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/paypal.svg" )}} alt="Paypal" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/amazon.svg" )}} alt="Amazon" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/google.svg" )}} alt="Google" class="img-fluid">
-                                    </div>
-                                    <div class="clients-logo">
-                                        <img src={{ asset("template/assets/images/clients/samsung.svg" )}} alt="Samsung" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ol class="carousel-indicators">
-                            <li data-target="#landingClientCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#landingClientCarousel" data-slide-to="1"></li>
-                            <li data-target="#landingClientCarousel" data-slide-to="2"></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="py-5 mb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 mb-5 mb-md-0">
-                    <img src="{{asset("template/assets/images/app_2.png")}}" alt="special offers" class="img-fluid" width="492px">
-                </div>
-                <div class="col-md-6">
-                    <h2 class="section-title">Get special offers on the things you love</h2>
-                    <p class="mb-5">He has led a remarkable campaign, defying the traditional mainstream parties courtesy of his En Marche! movement. For many, however, the campaign has become less about backing Macron and instead about voting against Le Pen, the National Front candidate.</p>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="media landing-feature">
-                                <span class="landing-feature-icon"></span>
-                                <div class="media-body">
-                                    <h5>Essentials</h5>
-                                    <p>All the basics for businesses that are just getting started.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="media landing-feature">
-                                <span class="landing-feature-icon"></span>
-                                <div class="media-body">
-                                    <h5>Premium</h5>
-                                    <p>All the basics for businesses that are just getting started.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="media landing-feature">
-                                <span class="landing-feature-icon"></span>
-                                <div class="media-body">
-                                    <h5>Standard</h5>
-                                    <p>All the basics for businesses that are just getting started.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="py-5 mb-5">
-        <div class="container">
-            <h2>Choose the plan that’s right for yor business</h2>
-            <p class="text-muted mb-5">Thank you for your very professional and prompt response. I wished I had found you before </p>
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="card pricing-card border-warning">
-                        <div class="card-body">
-                            <h3 class="mb-1">Starter</h3>
-                            <h3 class="mb-1 text-warning">Free</h3>
-                            <p class="payment-period">Per month</p>
-                            <p class="mb-4">Thank you for your very professional and prompt response.</p>
-                            <button class="btn btn-outline-warning btn-rounded">Get Started</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card pricing-card border-primary active">
-                        <div class="card-body">
-                            <h3>Popular</h3>
-                            <h3 class="text-primary">$23.00</h3>
-                            <p class="payment-period">Per month</p>
-                            <p class="mb-4">Thank you for your very professional and prompt response.</p>
-                            <button class="btn btn-primary btn-rounded">Get Started</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card pricing-card border-success">
-                        <div class="card-body">
-                            <h3>Enterprise</h3>
-                            <h3 class="text-success">$40.00</h3>
-                            <p class="payment-period">Per month</p>
-                            <p class="mb-4">Thank you for your very professional and prompt response.</p>
-                            <button class="btn btn-outline-success btn-rounded">Get Started</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="py-5 mb-5">
-        <div class="container">
-            <h2>Satisfied Users</h2>
-            <p class="text-muted mb-5">Thank you for your very professional and prompt response. I wished I had found you before </p>
-            <div class="row">
-                <div class="col-md-4 foi-review mb-5 mb-md-0">
-                    <div class="foi-rating">
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                    </div>
-                    <h5 class="foi-review-heading">Great support available</h5>
-                    <p class="foi-review-content">Thank you for your very professional and prompt response. I wished I had found you before I spent money on a competitors theme.</p>
-                    <div class="media foi-review-user">
-                        <img src="{{asset("template/assets/images/avatar/avatar_11.jpg")}}" alt="user" class="avatar">
-                        <div class="media-body">
-                            <h6 class="mb-0">Amarachi Nkechi</h6>
-                            <p>UX Designer</p>
-                        </div>
-                    </div>
+    <!-- End About -->
 
-                </div>
-                <div class="col-md-4 foi-review mb-5 mb-md-0">
-                    <div class="foi-rating">
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                    </div>
-                    <h5 class="foi-review-heading">Great support available</h5>
-                    <p class="foi-review-content">Thank you for your very professional and prompt response. I wished I had found you before I spent money on a competitors theme.</p>
-                    <div class="media foi-review-user">
-                        <img src="{{asset("template/assets/images/avatar/avatar_12.jpg")}}" alt="user" class="avatar">
-                        <div class="media-body">
-                            <h6 class="mb-0">Margje Jutten</h6>
-                            <p>Developer</p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-4 foi-review mb-5 mb-md-0">
-                    <div class="foi-rating">
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                        <span class="fas fa-star checked"></span>
-                    </div>
-                    <h5 class="foi-review-heading">Great support available</h5>
-                    <p class="foi-review-content">Thank you for your very professional and prompt response. I wished I had found you before I spent money on a competitors theme.</p>
-                    <div class="media foi-review-user">
-                        <img src="{{asset("template/assets/images/avatar/avatar_13.jpg")}}" alt="user" class="avatar">
-                        <div class="media-body">
-                            <h6 class="mb-0">Monica Böttger</h6>
-                            <p>UX Designer</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="py-5 mb-5">
+    <!-- Start QT -->
+    <div class="qt-box qt-background" style="background: url('{{asset('front/images/qt-bg.jpg')}}') no-repeat; background-size: cover; background-attachment: fixed">
         <div class="container">
-            <h2>FAQ</h2>
-            <p class="section-subtitle">Frequently Asked Questions</p>
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="card mb-3 landing-faq-card">
-                        <div class="card-header bg-white" id="faqOneTitle">
-                            <a href="#faqOneCollapse" class="d-flex align-items-center" data-toggle="collapse">
-                                <h6 class="mb-0">What is Foi app?</h6> <i class="far fa-plus-square ml-auto"></i>
-                            </a>
-                        </div>
-                        <div id="faqOneCollapse" class="collapse" aria-labelledby="faqOneTitle">
-                            <div class="card-body">
-                                <p class="mb-0 text-gray">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 landing-faq-card">
-                        <div class="card-header bg-white" id="faqTwoTitle">
-                            <a href="#faqTwoCollapse" class="d-flex align-items-center" data-toggle="collapse">
-                                <h6 class="mb-0">Why should I use Foi app?</h6> <i class="far fa-plus-square ml-auto"></i>
-                            </a>
-                        </div>
-                        <div id="faqTwoCollapse" class="collapse" aria-labelledby="faqTwoTitle">
-                            <div class="card-body">
-                                <p class="mb-0 text-gray">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 landing-faq-card">
-                        <div class="card-header bg-white" id="faqThreeTitle">
-                            <a href="#faqThreeCollapse" class="d-flex align-items-center" data-toggle="collapse">
-                                <h6 class="mb-0">How can I use Foi app?</h6> <i class="far fa-plus-square ml-auto"></i>
-                            </a>
-                        </div>
-                        <div id="faqThreeCollapse" class="collapse" aria-labelledby="faqThreeTitle">
-                            <div class="card-body">
-                                <p class="mb-0 text-gray">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </div>
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <p class="lead ">
+                        " If you're not the one cooking, stay out of the way and compliment the chef. "
+                    </p>
+                    <span class="lead">Michael Strahan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End QT -->
+
+    <!-- Start Menu -->
+    <div class="menu-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading-title text-center">
+                        <h2>Special Menu</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="card mb-3 landing-faq-card">
-                        <div class="card-header bg-white" id="faqFourTitle">
-                            <a href="#faqFourCollapse" class="d-flex align-items-center" data-toggle="collapse">
-                                <h6 class="mb-0">Who will see my updates?</h6> <i class="far fa-plus-square ml-auto"></i>
-                            </a>
+            </div>
+
+            <div class="row inner-menu-box">
+                <div class="col-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">All</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Drinks</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Lunch</</a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Dinner</a>
+                    </div>
+                </div>
+
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-01.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Drinks 1</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $7.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-02.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Drinks 2</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $9.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-03.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Drinks 3</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $10.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid lunch">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-04.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Lunch 1</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $15.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid lunch">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-05.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Lunch 2</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $18.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid lunch">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-06.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Lunch 3</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $20.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid dinner">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-07.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Dinner 1</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $25.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid dinner">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-08.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Dinner 2</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $22.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid dinner">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-09.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Dinner 3</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $24.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div id="faqFourCollapse" class="collapse" aria-labelledby="faqFourTitle">
-                            <div class="card-body">
-                                <p class="mb-0 text-gray">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-01.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Drinks 1</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $7.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-02.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Drinks 2</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $9.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-03.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Drinks 3</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $10.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 special-grid lunch">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-04.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Lunch 1</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $15.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid lunch">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-05.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Lunch 2</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $18.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid lunch">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-06.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Lunch 3</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $20.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-3 landing-faq-card">
-                        <div class="card-header bg-white" id="faqFiveTitle">
-                            <a href="#faqFiveCollapse" class="d-flex align-items-center" data-toggle="collapse">
-                                <h6 class="mb-0">Can people see my connections?</h6> <i class="far fa-plus-square ml-auto"></i>
-                            </a>
-                        </div>
-                        <div id="faqFiveCollapse" class="collapse" aria-labelledby="faqFiveTitle">
-                            <div class="card-body">
-                                <p class="mb-0 text-gray">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 landing-faq-card">
-                        <div class="card-header bg-white" id="faqSixTitle">
-                            <a href="#faqSixCollapse" class="d-flex align-items-center" data-toggle="collapse">
-                                <h6 class="mb-0">Being a user, what all rights I have?</h6> <i class="far fa-plus-square ml-auto"></i>
-                            </a>
-                        </div>
-                        <div id="faqSixCollapse" class="collapse" aria-labelledby="faqSixTitle">
-                            <div class="card-body">
-                                <p class="mb-0 text-gray">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 special-grid dinner">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-07.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Dinner 1</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $25.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid dinner">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-08.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Dinner 2</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $22.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 special-grid dinner">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset('front/images/img-09.jpg')}}" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>Special Dinner 3</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> $24.79</h5>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
+    <!-- End Menu -->
+
+    <!-- Start Gallery -->
+    <div class="gallery-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading-title text-center">
+                        <h2>Gallery</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tz-gallery">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <a class="lightbox" href="{{asset('front/images/gallery-img-01.jpg')}}">
+                            <img class="img-fluid" src="{{asset('front/images/gallery-img-01.jpg')}}" alt="Gallery Images">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <a class="lightbox" href="{{asset('front/images/gallery-img-02.jpg')}}">
+                            <img class="img-fluid" src="{{asset('front/images/gallery-img-02.jpg')}}" alt="Gallery Images">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <a class="lightbox" href="{{asset('front/images/gallery-img-03.jpg')}}">
+                            <img class="img-fluid" src="{{asset('front/images/gallery-img-03.jpg')}}" alt="Gallery Images">
+                        </a>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <a class="lightbox" href="{{asset('front/images/gallery-img-04.jpg')}}">
+                            <img class="img-fluid" src="{{asset('front/images/gallery-img-04.jpg')}}" alt="Gallery Images">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <a class="lightbox" href="{{asset('front/images/gallery-img-05.jpg')}}">
+                            <img class="img-fluid" src="{{asset('front/images/gallery-img-05.jpg')}}" alt="Gallery Images">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <a class="lightbox" href="{{asset('front/images/gallery-img-06.jpg')}}">
+                            <img class="img-fluid" src="{{asset('front/images/gallery-img-06.jpg')}}" alt="Gallery Images">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Gallery -->
+
+    <!-- Start Customer Reviews -->
+    <div class="customer-reviews-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading-title text-center">
+                        <h2>Customer Reviews</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto text-center">
+                    <div id="reviews" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner mt-4">
+                            <div class="carousel-item text-center active">
+                                <div class="img-box p-1 border rounded-circle m-auto">
+                                    <img class="d-block w-100 rounded-circle" src="{{asset('front/images/quotations-button.png')}}" alt="">
+                                </div>
+                                <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
+                                <h6 class="text-dark m-0">Web Developer</h6>
+                                <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+                            </div>
+                            <div class="carousel-item text-center">
+                                <div class="img-box p-1 border rounded-circle m-auto">
+                                    <img class="d-block w-100 rounded-circle" src="{{asset('front/images/quotations-button.png')}}" alt="">
+                                </div>
+                                <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
+                                <h6 class="text-dark m-0">Web Designer</h6>
+                                <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+                            </div>
+                            <div class="carousel-item text-center">
+                                <div class="img-box p-1 border rounded-circle m-auto">
+                                    <img class="d-block w-100 rounded-circle" src="{{asset('front/images/quotations-button.png')}}" alt="">
+                                </div>
+                                <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
+                                <h6 class="text-dark m-0">Seo Analyst</h6>
+                                <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Customer Reviews -->
+
+    <!-- Start Contact info -->
+    <div class="contact-imfo-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 arrow-right">
+                    <i class="fa fa-volume-control-phone"></i>
+                    <div class="overflow-hidden">
+                        <h4>Phone</h4>
+                        <p class="lead">
+                            +01 123-456-4590
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 arrow-right">
+                    <i class="fa fa-envelope"></i>
+                    <div class="overflow-hidden">
+                        <h4>Email</h4>
+                        <p class="lead">
+                            yourmail@gmail.com
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-map-marker"></i>
+                    <div class="overflow-hidden">
+                        <h4>Location</h4>
+                        <p class="lead">
+                            800, Lorem Street, US
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Contact info -->
 @stop

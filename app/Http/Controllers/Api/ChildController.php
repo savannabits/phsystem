@@ -44,6 +44,10 @@ class ChildController extends Controller
             $data = $request->getSanitized();
             $child = new Child($data);
             \DB::transaction(function() use ($request, $data, $child) {
+                if (!$child->enrollment_date) {
+                    $child->enrollment_date = now();
+                }
+                $child->active = true;
                 $child->saveOrFail();
 
                 //Save Relatives
@@ -86,7 +90,9 @@ class ChildController extends Controller
                 // Enroll to appropriate class
                 $age = now()->diffInYears(Carbon::parse($child->dob));
                 //Find appropriate class
-                $class = PhClass::whereDate("minimum_age","<=",$age)->whereDate("maximum_age",">=",$age)->first();
+                $class = PhClass::where("minimum_age","<=",$age)
+                    ->where("maximum_age",">=",$age)
+                    ->first();
                 if ($class) {
                     $enrollment = new Enrollment();
                     $enrollment->phClass()->associate($class);

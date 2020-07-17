@@ -16,7 +16,7 @@
 				<input type="file" ref="file" @change="uploadImage($event)" accept="image/*">
 				Browse Files
 			</span>
-            <button :disabled="loading" type="button" class="button success" @click="onCrop"><i class="fa fa-spinner fa-spin" v-if="loading"></i> CROP</button>
+            <button :disabled="loading" v-if="image" type="button" class="btn btn-success btn-sm p-2" @click="onCrop"><i class="fa fa-spinner fa-spin" v-if="loading"></i> Crop & upload</button>
         </div>
     </div>
 </template>

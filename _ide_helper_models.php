@@ -175,7 +175,14 @@ namespace App{
  * @property int $enabled
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Child[] $children
+ * @property-read int|null $children_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Enrollment[] $enrollments
+ * @property-read int|null $enrollments_count
+ * @property-read mixed $current_enrollments
  * @property-read mixed $resource_url
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\RollCall[] $rollCalls
+ * @property-read int|null $roll_calls_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PhClass newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PhClass newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PhClass query()
@@ -232,6 +239,7 @@ namespace App{
  * @property \Illuminate\Support\Carbon|null $graduation_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $is_current
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Attendance[] $attendances
  * @property-read int|null $attendances_count
  * @property-read \App\Child $child
@@ -245,6 +253,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enrollment whereEnrollmentDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enrollment whereGraduationDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enrollment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Enrollment whereIsCurrent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enrollment wherePhClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enrollment whereUpdatedAt($value)
  */
@@ -271,8 +280,14 @@ namespace App{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $guid
  * @property string|null $domain
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Child[] $children
+ * @property-read int|null $children_count
+ * @property-read mixed $avatar_thumb
+ * @property-read mixed $avatar_url
  * @property-read mixed $full_name
  * @property-read mixed $resource_url
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
+ * @property-read int|null $media_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
@@ -305,7 +320,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUsername($value)
  */
-	class User extends \Eloquent {}
+	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia\HasMedia {}
 }
 
 namespace App{
@@ -404,7 +419,11 @@ namespace App{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Attendance[] $attendances
  * @property-read int|null $attendances_count
  * @property-read \App\User $creator
+ * @property-read mixed $end
+ * @property-read mixed $is_marked
  * @property-read mixed $resource_url
+ * @property-read mixed $start
+ * @property-read mixed $title
  * @property-read \App\PhClass $phClass
  * @method static \Illuminate\Database\Eloquent\Builder|\App\RollCall newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\RollCall newQuery()
@@ -438,14 +457,18 @@ namespace App{
  * @property string $enrollment_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Enrollment[] $enrollment
- * @property-read int|null $enrollment_count
+ * @property int|null $current_enrollment_id
+ * @property-read \App\Enrollment|null $currentEnrollment
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Enrollment[] $enrollments
+ * @property-read int|null $enrollments_count
  * @property-read mixed $age
  * @property-read mixed $avatar_thumb
  * @property-read mixed $avatar_url
  * @property-read mixed $resource_url
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
  * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\PhClass[] $phClasses
+ * @property-read int|null $ph_classes_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Relative[] $relatives
  * @property-read int|null $relatives_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Child newModelQuery()
@@ -454,6 +477,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Child whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Child whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Child whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Child whereCurrentEnrollmentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Child whereDob($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Child whereEnrollmentDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Child whereFirstName($value)

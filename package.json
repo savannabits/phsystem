@@ -38,9 +38,12 @@
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@babel/preset-env": "^7.9.6",
+        "animate.css": "^4.1.0",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.2.2",
         "laravel-mix-merge-manifest": "^0.1.2",
-        "vue-advanced-cropper": "^0.16.5"
+        "vue-advanced-cropper": "^0.16.5",
+        "vue-cal": "^3.6.3",
+        "wow.js": "^1.2.2"
     }
 }

@@ -14062,7 +14062,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
                 return _context2.abrupt("return", new Promise(function (resolve, reject) {
                   _this.$validator.validateAll().then(function (result) {
                     if (!result) {
-                      reject("The form contains  invalid fields");
+                      reject("Validation failed. Please check that your form data is valid.");
                       return false;
                     }
 
@@ -14072,9 +14072,15 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
                       url: url,
                       data: _this4.getPostData()
                     }).then(function (response) {
-                      resolve(_this4.onSuccess(response.data));
+                      _this4.onSuccess(response.data);
+
+                      resolve(response);
                     })["catch"](function (errors) {
-                      reject(_this4.onFail(errors.response.data));
+                      var _errors$response;
+
+                      _this4.onFail(((_errors$response = errors.response) === null || _errors$response === void 0 ? void 0 : _errors$response.data) || errors);
+
+                      reject(errors);
                     });
                   });
                 }));
